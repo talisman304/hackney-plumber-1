@@ -2,138 +2,150 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Hackney Plumber: emergency & routine plumbing, heating, drainage and appliance repair. 24/7 emergency. No call-out charge. 1-hour response. Covering E1–E18." />
-  <title>Hackney Plumber | 24/7 Emergency | No Call-Out Charge | E1–E18</title>
-  <meta name="theme-color" content="#0b1220" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Local electrician for emergencies, fault finding, rewires, EV chargers and EICR certificates. Fast response, clear pricing, professional workmanship." />
+  <title>Local Electrician | Emergency Callouts • EICR • EV Chargers</title>
+  <meta name="theme-color" content="#07090f" />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Hackney Plumber | 24/7 Emergency | No Call-Out Charge" />
-  <meta property="og:description" content="Fast, reliable plumbing, heating, drainage & appliance repair. 1-hour response. Work fully guaranteed. Covering E1–E18." />
-  <meta property="og:type" content="website" />
-
-  <!-- Preconnect (optional if you add external assets later) -->
   <style>
-    /* ====== Design tokens ====== */
+    /* ===========================
+       ELECTRICIAN THEME SYSTEM
+       - Industrial dark + neon amber/cyan
+       - Circuit-board background
+       - Distinct layout: estimate panel + service selector
+       =========================== */
+
     :root{
-      --bg: #070b14;
+      --bg: #07090f;
+      --bg2:#0b0f1b;
       --panel: rgba(255,255,255,.06);
-      --panel-2: rgba(255,255,255,.09);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.7);
-      --faint: rgba(255,255,255,.55);
+      --panel2: rgba(255,255,255,.09);
       --line: rgba(255,255,255,.12);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --faint: rgba(255,255,255,.55);
 
-      --brand: #4dd7ff;
-      --brand-2: #7c5cff;
-      --good: #52ffa8;
+      --amber:#ffb020;
+      --cyan:#4de7ff;
+      --good:#40f58a;
+      --danger:#ff4d5a;
 
-      --shadow: 0 18px 60px rgba(0,0,0,.45);
       --radius: 18px;
-
-      --max: 1140px;
+      --max: 1180px;
       --pad: clamp(16px, 3.5vw, 28px);
+      --shadow: 0 18px 70px rgba(0,0,0,.55);
     }
 
-    *{ box-sizing: border-box; }
+    *{ box-sizing:border-box; }
     html,body{ height:100%; }
     body{
       margin:0;
       color:var(--text);
       background:
-        radial-gradient(1200px 700px at 12% 10%, rgba(77,215,255,.12), transparent 55%),
-        radial-gradient(900px 600px at 92% 8%, rgba(124,92,255,.14), transparent 50%),
-        radial-gradient(800px 600px at 50% 110%, rgba(82,255,168,.10), transparent 55%),
-        var(--bg);
-      font: 16px/1.55 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      letter-spacing: .2px;
+        radial-gradient(900px 560px at 12% 0%, rgba(255,176,32,.16), transparent 55%),
+        radial-gradient(900px 560px at 92% 10%, rgba(77,231,255,.12), transparent 55%),
+        radial-gradient(900px 560px at 50% 110%, rgba(64,245,138,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      font: 16px/1.55 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      letter-spacing:.2px;
+      overflow-x:hidden;
     }
-    a{ color: inherit; text-decoration: none; }
-    img{ max-width:100%; display:block; }
-    .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
 
-    /* ====== Header ====== */
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding:0 var(--pad); }
+
+    /* Circuit grid background layer */
+    .circuit{
+      position:fixed; inset:0; pointer-events:none; z-index:-1; opacity:.55;
+      background:
+        linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(700px 420px at 50% 10%, black 60%, transparent 100%);
+    }
+    .circuit:after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(circle at 18% 22%, rgba(255,176,32,.20) 0 2px, transparent 3px),
+        radial-gradient(circle at 66% 18%, rgba(77,231,255,.18) 0 2px, transparent 3px),
+        radial-gradient(circle at 78% 42%, rgba(255,176,32,.14) 0 2px, transparent 3px),
+        radial-gradient(circle at 32% 56%, rgba(77,231,255,.12) 0 2px, transparent 3px);
+      opacity:.9;
+    }
+
+    /* Header */
     header{
-      position: sticky; top:0; z-index: 30;
+      position:sticky; top:0; z-index:40;
       backdrop-filter: blur(14px);
-      background: linear-gradient(to bottom, rgba(7,11,20,.78), rgba(7,11,20,.35));
-      border-bottom: 1px solid var(--line);
+      background: linear-gradient(to bottom, rgba(7,9,15,.88), rgba(7,9,15,.35));
+      border-bottom:1px solid var(--line);
     }
     .nav{
       display:flex; align-items:center; justify-content:space-between;
-      padding: 14px 0;
-      gap: 14px;
+      gap:14px; padding: 14px 0;
     }
     .brand{
-      display:flex; align-items:center; gap:10px;
-      min-width: 220px;
+      display:flex; align-items:center; gap:12px;
+      min-width: 240px;
     }
-    .logo{
-      width: 40px; height: 40px; border-radius: 12px;
+    .bolt{
+      width: 42px; height: 42px; border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
       background:
-        radial-gradient(circle at 30% 30%, rgba(77,215,255,.85), rgba(77,215,255,.15) 55%, transparent 60%),
-        radial-gradient(circle at 75% 70%, rgba(124,92,255,.85), rgba(124,92,255,.18) 60%, transparent 62%),
-        rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.12);
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
-      position: relative;
-      overflow:hidden;
+        radial-gradient(circle at 30% 20%, rgba(255,176,32,.9), rgba(255,176,32,.08) 60%, transparent 62%),
+        radial-gradient(circle at 70% 75%, rgba(77,231,255,.85), rgba(77,231,255,.06) 60%, transparent 62%),
+        rgba(255,255,255,.05);
+      box-shadow: 0 16px 48px rgba(0,0,0,.35);
+      position:relative; overflow:hidden;
     }
-    .logo:after{
-      content:"";
-      position:absolute; inset:-40% -40%;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,.22), transparent);
-      transform: rotate(25deg);
-      animation: sheen 4.8s ease-in-out infinite;
-    }
-    @keyframes sheen{
-      0%{ transform: translateX(-40%) rotate(25deg); opacity:.0; }
-      30%{ opacity:.35; }
-      55%{ transform: translateX(40%) rotate(25deg); opacity:.0; }
-      100%{ transform: translateX(40%) rotate(25deg); opacity:.0; }
+    .bolt svg{
+      position:absolute; inset:0; margin:auto;
+      width: 22px; height: 22px;
+      filter: drop-shadow(0 8px 10px rgba(0,0,0,.35));
+      opacity:.95;
     }
     .brand h1{
       margin:0;
       font-size: 14px;
-      font-weight: 700;
-      letter-spacing: .6px;
+      font-weight: 900;
+      letter-spacing: .8px;
       text-transform: uppercase;
     }
     .brand p{
       margin:2px 0 0;
-      font-size: 12px;
       color: var(--muted);
+      font-size: 12px;
     }
 
     nav ul{
       list-style:none; margin:0; padding:0;
-      display:flex; gap: 16px; align-items:center;
+      display:flex; gap: 14px; align-items:center;
     }
     nav a{
-      display:inline-flex; align-items:center;
       padding: 10px 10px;
-      color: var(--muted);
       border-radius: 12px;
-      transition: background .18s ease, color .18s ease;
-      font-weight: 600;
-      font-size: 14px;
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 13px;
+      transition: background .15s ease, color .15s ease;
     }
     nav a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
 
-    .nav-cta{
-      display:flex; align-items:center; gap:10px;
-      min-width: 320px;
-      justify-content: flex-end;
+    .cta{
+      display:flex; gap:10px; align-items:center; justify-content:flex-end;
+      min-width: 360px;
     }
-    .pill{
+    .tag{
       display:none;
-      padding: 10px 12px;
+      padding: 9px 12px;
+      border-radius: 999px;
       border: 1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.05);
-      border-radius: 999px;
-      font-size: 13px;
       color: var(--muted);
-      white-space: nowrap;
+      font-size: 13px;
+      white-space:nowrap;
+      font-weight: 800;
     }
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
@@ -143,169 +155,199 @@
       border: 1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.06);
       color: var(--text);
-      font-weight: 700;
+      font-weight: 900;
       font-size: 14px;
-      transition: transform .14s ease, background .14s ease, border-color .14s ease;
       cursor:pointer;
+      transition: transform .14s ease, background .14s ease, border-color .14s ease;
       user-select:none;
     }
     .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.22); }
     .btn.primary{
-      background: linear-gradient(135deg, rgba(77,215,255,.95), rgba(124,92,255,.85));
+      background: linear-gradient(135deg, rgba(255,176,32,.95), rgba(77,231,255,.85));
+      color: #0a0c12;
       border-color: rgba(255,255,255,.22);
-      color: #071018;
-      box-shadow: 0 16px 45px rgba(77,215,255,.18);
+      box-shadow: 0 18px 55px rgba(255,176,32,.14);
     }
-    .btn.primary:hover{ transform: translateY(-1px); }
+    .btn.danger{
+      background: rgba(255,77,90,.16);
+      border-color: rgba(255,77,90,.35);
+    }
     .btn.small{ padding: 9px 12px; border-radius: 12px; font-size: 13px; }
 
-    .menu-btn{ display:none; }
+    .menu{ display:none; }
+
     .drawer{
       display:none;
       border-top: 1px solid var(--line);
       padding: 12px 0 16px;
     }
-    .drawer a{ display:block; padding: 12px 10px; border-radius: 12px; }
-    .drawer a:hover{ background: rgba(255,255,255,.06); }
+    .drawer a{ display:block; padding: 12px 10px; border-radius: 12px; font-weight: 800; color: var(--muted); }
+    .drawer a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
 
-    /* ====== Hero ====== */
-    .hero{
-      padding: clamp(26px, 5vw, 64px) 0 10px;
-    }
+    /* Hero */
+    .hero{ padding: clamp(26px, 5vw, 66px) 0 12px; }
     .hero-grid{
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
+      grid-template-columns: 1.25fr .75fr;
       gap: clamp(16px, 3.5vw, 28px);
-      align-items: start;
+      align-items:start;
     }
+
     .kicker{
       display:inline-flex; align-items:center; gap:10px;
       padding: 8px 12px;
+      border-radius: 999px;
       border: 1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.05);
-      border-radius: 999px;
       color: var(--muted);
-      font-weight: 700;
+      font-weight: 900;
       font-size: 12px;
-      letter-spacing: .5px;
       text-transform: uppercase;
+      letter-spacing:.6px;
     }
-    .dot{
-      width: 8px; height: 8px; border-radius: 999px;
+    .pulse{
+      width: 10px; height: 10px; border-radius: 999px;
       background: var(--good);
-      box-shadow: 0 0 0 6px rgba(82,255,168,.12);
+      box-shadow: 0 0 0 6px rgba(64,245,138,.14);
+      position:relative;
     }
+    .pulse:after{
+      content:"";
+      position:absolute; inset:-12px;
+      border-radius:999px;
+      border:1px solid rgba(64,245,138,.25);
+      animation: ping 1.8s ease-out infinite;
+    }
+    @keyframes ping{
+      0%{ transform:scale(.4); opacity:.0; }
+      20%{ opacity:.7; }
+      100%{ transform:scale(1.15); opacity:0; }
+    }
+
     h2{
       margin: 14px 0 10px;
-      font-size: clamp(28px, 4.2vw, 46px);
-      line-height: 1.08;
-      letter-spacing: -0.8px;
+      font-size: clamp(30px, 4.2vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -1px;
     }
     .lead{
-      margin: 0 0 18px;
+      margin:0 0 18px;
       color: var(--muted);
       font-size: clamp(15px, 1.4vw, 18px);
       max-width: 62ch;
     }
+
     .hero-actions{
-      display:flex; flex-wrap:wrap; gap: 10px;
-      margin: 16px 0 14px;
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin: 16px 0 12px;
     }
-    .trust-row{
-      display:flex; flex-wrap:wrap; gap: 10px;
+
+    .signal{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
       margin-top: 14px;
     }
-    .badge{
-      flex: 1 1 160px;
-      min-width: 170px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.12);
+    .sig{
       border-radius: var(--radius);
-      padding: 14px 14px;
-      box-shadow: 0 10px 35px rgba(0,0,0,.22);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      padding: 14px;
+      box-shadow: 0 10px 34px rgba(0,0,0,.22);
     }
-    .badge strong{ display:block; font-size: 14px; }
-    .badge span{ display:block; color: var(--muted); font-size: 13px; margin-top: 4px; }
+    .sig strong{ display:block; font-size: 14px; }
+    .sig span{ display:block; margin-top: 4px; color: var(--muted); font-size: 13px; }
 
-    /* Right panel */
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      border: 1px solid rgba(255,255,255,.14);
+    /* Right column: Estimate console */
+    .console{
       border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.14);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.04));
       box-shadow: var(--shadow);
       overflow:hidden;
     }
-    .card .card-inner{ padding: 18px; }
-    .card h3{
-      margin: 0 0 8px;
-      font-size: 16px;
-      letter-spacing: -.2px;
+    .console-top{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.14);
     }
-    .mini{
-      margin:0 0 14px;
-      color: var(--muted);
-      font-size: 13px;
+    .console-top h3{
+      margin:0;
+      font-size: 14px;
+      letter-spacing:.4px;
+      text-transform: uppercase;
+      font-weight: 900;
+      color: rgba(255,255,255,.88);
     }
-    .form{
-      display:grid; gap: 10px;
+    .status{
+      display:inline-flex; gap:8px; align-items:center;
+      color: var(--muted); font-size: 12px; font-weight: 900;
+      letter-spacing:.4px; text-transform:uppercase;
     }
-    .field{
-      display:grid; gap: 6px;
+    .led{
+      width:10px; height:10px; border-radius: 3px;
+      background: rgba(255,176,32,.95);
+      box-shadow: 0 0 18px rgba(255,176,32,.35);
     }
+
+    .console-inner{ padding: 16px; display:grid; gap: 10px; }
+    .field{ display:grid; gap:6px; }
     label{
       font-size: 12px;
       color: var(--muted);
-      font-weight: 700;
-      letter-spacing: .3px;
+      font-weight: 900;
+      letter-spacing:.35px;
     }
-    input, textarea, select{
+    input, select, textarea{
       width:100%;
       padding: 12px 12px;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,.14);
       background: rgba(0,0,0,.22);
       color: var(--text);
-      outline: none;
-      transition: border-color .14s ease, background .14s ease;
+      outline:none;
       font: inherit;
+      transition: border-color .14s ease, background .14s ease;
     }
-    input:focus, textarea:focus, select:focus{
-      border-color: rgba(77,215,255,.5);
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(255,176,32,.55);
       background: rgba(0,0,0,.28);
     }
-    textarea{ min-height: 92px; resize: vertical; }
-    .form-row{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    .fineprint{
-      font-size: 12px;
-      color: var(--faint);
-      margin-top: 10px;
-    }
-    .fineprint a{ text-decoration: underline; }
+    textarea{ min-height: 88px; resize: vertical; }
+    .row{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
 
-    /* ====== Sections ====== */
-    section{ padding: 32px 0; }
-    .section-head{
-      display:flex; align-items:flex-end; justify-content:space-between; gap: 18px;
+    .estimate{
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.035);
+      padding: 14px;
+      display:grid; gap:8px;
+    }
+    .est-line{
+      display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+    }
+    .est-line .k{ color: var(--muted); font-weight: 900; font-size: 12px; letter-spacing:.3px; text-transform:uppercase; }
+    .est-line .v{ font-weight: 1000; font-size: 18px; letter-spacing:-.3px; }
+    .note{ color: var(--faint); font-size: 12px; margin:0; }
+
+    /* Sections */
+    section{ padding: 34px 0; }
+    .head{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:18px;
       margin-bottom: 16px;
     }
-    .section-head h3{
+    .head h3{
       margin:0;
       font-size: 22px;
-      letter-spacing: -.4px;
+      letter-spacing:-.4px;
     }
-    .section-head p{
-      margin:0;
-      color: var(--muted);
-      max-width: 70ch;
-    }
+    .head p{ margin:0; color: var(--muted); max-width: 70ch; }
 
     .grid-3{
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0,1fr));
       gap: 12px;
     }
     .grid-2{
@@ -313,182 +355,143 @@
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
-    .tile{
-      background: rgba(255,255,255,.04);
+    .card{
+      border-radius: var(--radius);
       border: 1px solid rgba(255,255,255,.12);
-      border-radius: 18px;
+      background: rgba(255,255,255,.04);
       padding: 16px;
     }
-    .tile h4{ margin: 0 0 6px; font-size: 15px; }
-    .tile p{ margin:0; color: var(--muted); font-size: 13px; }
+    .card h4{ margin:0 0 6px; font-size: 15px; letter-spacing:-.2px; }
+    .card p{ margin:0; color: var(--muted); font-size: 13px; }
 
-    .list{
-      margin: 10px 0 0;
-      padding:0;
-      list-style:none;
-      display:grid;
-      gap: 8px;
-    }
-    .list li{
-      display:flex; gap: 10px; align-items:flex-start;
-      color: var(--muted);
-      font-size: 13px;
-    }
-    .check{
+    .list{ margin: 10px 0 0; padding:0; list-style:none; display:grid; gap:8px; }
+    .list li{ display:flex; gap:10px; color: var(--muted); font-size: 13px; align-items:flex-start; }
+    .tick{
       width: 18px; height: 18px; border-radius: 6px;
-      border: 1px solid rgba(82,255,168,.35);
-      background: rgba(82,255,168,.12);
-      display:inline-flex; align-items:center; justify-content:center;
-      flex: 0 0 auto;
-      margin-top: 1px;
+      border: 1px solid rgba(255,176,32,.35);
+      background: rgba(255,176,32,.12);
+      position:relative; flex: 0 0 auto; margin-top: 1px;
     }
-    .check:before{
+    .tick:after{
       content:"";
+      position:absolute; left:5px; top:5px;
       width: 8px; height: 4px;
-      border-left: 2px solid var(--good);
-      border-bottom: 2px solid var(--good);
+      border-left: 2px solid var(--amber);
+      border-bottom: 2px solid var(--amber);
       transform: rotate(-45deg);
-      display:block;
     }
 
-    .divider{
-      height:1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
-      margin: 22px 0;
-    }
-
-    /* Coverage chips */
-    .chips{
-      display:flex; flex-wrap: wrap; gap: 8px;
-      margin-top: 12px;
-    }
-    .chip{
-      padding: 8px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.12);
-      color: var(--muted);
-      font-weight: 700;
-      font-size: 12px;
-      letter-spacing: .2px;
+    .split{
+      display:grid;
+      grid-template-columns: 1fr .95fr;
+      gap: 12px;
+      align-items:start;
     }
 
     /* FAQ */
     details{
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.12);
       border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
       padding: 12px 14px;
     }
     summary{
       cursor:pointer;
-      font-weight: 800;
+      font-weight: 1000;
       color: var(--text);
       list-style:none;
     }
     summary::-webkit-details-marker{ display:none; }
-    details p{
-      margin: 10px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
+    details p{ margin: 10px 0 0; color: var(--muted); font-size: 13px; }
 
     /* Footer */
     footer{
-      padding: 28px 0 36px;
+      padding: 28px 0 40px;
       border-top: 1px solid var(--line);
       background: rgba(0,0,0,.12);
     }
     .foot{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 16px;
+      display:grid; grid-template-columns: 1.2fr .8fr; gap: 14px;
       align-items:start;
     }
-    .muted{ color: var(--muted); }
-    .foot small{ color: var(--faint); }
+    small{ color: var(--faint); }
 
-    /* ====== Responsive ====== */
+    /* Responsive */
     @media (max-width: 980px){
-      .hero-grid{ grid-template-columns: 1fr; }
-      .nav-cta{ min-width: unset; }
       nav ul{ display:none; }
-      .menu-btn{ display:inline-flex; }
-      .drawer{ display:none; }
+      .menu{ display:inline-flex; }
+      .cta{ min-width: unset; }
+      .hero-grid{ grid-template-columns: 1fr; }
+      .signal{ grid-template-columns: 1fr; }
       .grid-3{ grid-template-columns: 1fr; }
       .grid-2{ grid-template-columns: 1fr; }
-      .form-row{ grid-template-columns: 1fr; }
+      .split{ grid-template-columns: 1fr; }
+      .row{ grid-template-columns: 1fr; }
       .foot{ grid-template-columns: 1fr; }
     }
     @media (min-width: 981px){
-      .pill{ display:inline-flex; }
+      .tag{ display:inline-flex; }
     }
-
-    /* Reduced motion */
     @media (prefers-reduced-motion: reduce){
-      *{ scroll-behavior: auto !important; }
-      .logo:after{ animation: none; }
-      .btn{ transition: none; }
+      .pulse:after{ animation:none; }
+      *{ scroll-behavior:auto !important; }
+      .btn{ transition:none; }
     }
   </style>
 
-  <!-- LocalBusiness structured data (replace placeholders) -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "Plumber",
-    "name": "Hackney Plumber",
-    "areaServed": ["Hackney", "E8", "E9", "E1", "E2", "E3", "E4", "E5", "E6", "E7", "E10", "E11", "E12", "E13", "E14", "E15", "E16", "E17", "E18"],
-    "availableChannel": {
-      "@type": "ServiceChannel",
-      "servicePhone": {
-        "@type": "ContactPoint",
-        "telephone": "YOUR_PHONE_NUMBER",
-        "contactType": "customer service"
-      }
-    },
-    "url": "https://hackneyplumber.co.uk/"
+    "@context":"https://schema.org",
+    "@type":"Electrician",
+    "name":"YOUR_ELECTRICIAN_NAME",
+    "areaServed":"YOUR_SERVICE_AREA",
+    "url":"https://example.com",
+    "telephone":"YOUR_PHONE_NUMBER"
   }
   </script>
 </head>
 
 <body>
+  <div class="circuit" aria-hidden="true"></div>
+
   <header>
     <div class="wrap">
       <div class="nav">
-        <a class="brand" href="#top" aria-label="Hackney Plumber home">
-          <span class="logo" aria-hidden="true"></span>
+        <a class="brand" href="#top" aria-label="Electrician home">
+          <span class="bolt" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M13 2L4 14h7l-1 8 10-14h-7l0-6z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </span>
           <span>
-            <h1>Hackney Plumber</h1>
-            <p>24/7 Emergency • No Call-Out Charge • E1–E18</p>
+            <h1>YOUR_ELECTRICIAN_NAME</h1>
+            <p>Emergency • Fault Finding • EICR • EV Chargers</p>
           </span>
         </a>
 
         <nav aria-label="Primary">
           <ul>
             <li><a href="#services">Services</a></li>
-            <li><a href="#how">How it works</a></li>
-            <li><a href="#coverage">Coverage</a></li>
-            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#certs">Compliance</a></li>
             <li><a href="#faq">FAQ</a></li>
           </ul>
         </nav>
 
-        <div class="nav-cta">
-          <span class="pill">1-hour response target • Work fully guaranteed</span>
-          <a class="btn small" href="#quote">Get a quote</a>
-          <a class="btn primary" id="callTop" href="tel:YOUR_PHONE_NUMBER">Call now</a>
-          <button class="btn menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="drawer">Menu</button>
+        <div class="cta">
+          <span class="tag">Rapid response • Clear pricing • Neat workmanship</span>
+          <a class="btn small" href="#quote">Instant estimate</a>
+          <a class="btn primary" href="tel:YOUR_PHONE_NUMBER">Call now</a>
+          <button class="btn menu" id="menuBtn" type="button" aria-expanded="false" aria-controls="drawer">Menu</button>
         </div>
       </div>
 
-      <div class="drawer" id="drawer" aria-label="Mobile menu">
+      <div class="drawer" id="drawer">
         <a href="#services">Services</a>
-        <a href="#how">How it works</a>
-        <a href="#coverage">Coverage</a>
-        <a href="#pricing">Pricing</a>
+        <a href="#process">Process</a>
+        <a href="#certs">Compliance</a>
         <a href="#faq">FAQ</a>
-        <a href="#quote">Get a quote</a>
+        <a href="#quote">Instant estimate</a>
         <a href="tel:YOUR_PHONE_NUMBER">Call now</a>
       </div>
     </div>
@@ -500,91 +503,116 @@
       <div class="wrap">
         <div class="hero-grid">
           <div>
-            <span class="kicker"><span class="dot" aria-hidden="true"></span> 24/7 Emergency plumbing in Hackney</span>
-            <h2>Fast, reliable plumbing, heating & drainage — without the hassle.</h2>
+            <span class="kicker"><span class="pulse" aria-hidden="true"></span> Same-day options for urgent electrical issues</span>
+            <h2>Electrician you can call when things trip, spark, or stop working.</h2>
             <p class="lead">
-              Routine and emergency callouts across Hackney and surrounding postcodes.
-              We aim for a <strong>1-hour response</strong>, offer a <strong>10% discount</strong>,
-              and our work is <strong>fully guaranteed</strong>.
+              From <strong>fault finding</strong> and <strong>emergency callouts</strong> to <strong>EICR certificates</strong>,
+              <strong>EV charger installs</strong>, and <strong>consumer unit upgrades</strong> — delivered with a clean finish and clear communication.
             </p>
 
             <div class="hero-actions">
-              <a class="btn primary" href="#quote">Request a call back</a>
-              <a class="btn" href="#services">View services</a>
-              <a class="btn" href="tel:YOUR_PHONE_NUMBER">Call: YOUR_PHONE_NUMBER</a>
+              <a class="btn primary" href="tel:YOUR_PHONE_NUMBER">Emergency? Call now</a>
+              <a class="btn danger" href="#quote">Non-urgent: get estimate</a>
+              <a class="btn" href="#services">Browse services</a>
             </div>
 
-            <div class="trust-row" aria-label="Key benefits">
-              <div class="badge">
-                <strong>10% Discount</strong>
-                <span>Available across routine & emergency work.</span>
+            <div class="signal" aria-label="Trust signals">
+              <div class="sig">
+                <strong>Fault finding first</strong>
+                <span>We diagnose properly before recommending work.</span>
               </div>
-              <div class="badge">
-                <strong>Work Fully Guaranteed</strong>
-                <span>We stand behind installations and repairs.</span>
+              <div class="sig">
+                <strong>Certificates & compliance</strong>
+                <span>EICR / installation certification options.</span>
               </div>
-              <div class="badge">
-                <strong>1 Hour Response</strong>
-                <span>Rapid attendance target for urgent issues.</span>
-              </div>
-              <div class="badge">
-                <strong>No Call-Out Charge</strong>
-                <span>Transparent approach to getting you help fast.</span>
+              <div class="sig">
+                <strong>Clean, tidy workmanship</strong>
+                <span>Respectful on-site and finished properly.</span>
               </div>
             </div>
           </div>
 
-          <!-- Quote card -->
-          <aside class="card" id="quote" aria-label="Quick quote form">
-            <div class="card-inner">
-              <h3>Get a quick quote</h3>
-              <p class="mini">Send the details and we’ll respond as soon as possible.</p>
+          <!-- Estimate console -->
+          <aside class="console" id="quote" aria-label="Instant estimate console">
+            <div class="console-top">
+              <h3>Instant estimate console</h3>
+              <div class="status"><span class="led" aria-hidden="true"></span> ready</div>
+            </div>
 
-              <form class="form" id="quoteForm">
-                <div class="form-row">
+            <div class="console-inner">
+              <div class="row">
+                <div class="field">
+                  <label for="job">Job type</label>
+                  <select id="job">
+                    <option value="emergency">Emergency callout</option>
+                    <option value="fault">Fault finding / intermittent trip</option>
+                    <option value="eicr">EICR certificate</option>
+                    <option value="rewire">Partial / full rewire</option>
+                    <option value="cu">Consumer unit upgrade</option>
+                    <option value="ev">EV charger install</option>
+                    <option value="lights">Lighting (internal/external)</option>
+                    <option value="sockets">Sockets / switches</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="property">Property type</label>
+                  <select id="property">
+                    <option value="flat">Flat</option>
+                    <option value="house">House</option>
+                    <option value="commercial">Commercial</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="field">
+                  <label for="postcode">Postcode</label>
+                  <input id="postcode" placeholder="e.g. E8" autocomplete="postal-code" />
+                </div>
+                <div class="field">
+                  <label for="urgency">Urgency</label>
+                  <select id="urgency">
+                    <option value="today">Today</option>
+                    <option value="48h">Within 48 hours</option>
+                    <option value="week">This week</option>
+                    <option value="flex">Flexible</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="estimate" aria-live="polite">
+                <div class="est-line">
+                  <span class="k">Estimated range</span>
+                  <span class="v" id="range">£—</span>
+                </div>
+                <div class="est-line">
+                  <span class="k">Likely visit</span>
+                  <span class="v" id="visit">—</span>
+                </div>
+                <p class="note">
+                  This is a guidance range. Exact pricing depends on access, parts, and confirmed scope.
+                </p>
+              </div>
+
+              <form id="estimateForm">
+                <div class="field">
+                  <label for="details">Brief details</label>
+                  <textarea id="details" required placeholder="What’s happening? Any burning smell, sparks, repeated tripping, or power loss?"></textarea>
+                </div>
+                <div class="row">
                   <div class="field">
                     <label for="name">Name</label>
-                    <input id="name" name="name" autocomplete="name" required placeholder="Your name" />
+                    <input id="name" required autocomplete="name" placeholder="Your name" />
                   </div>
                   <div class="field">
                     <label for="phone">Phone</label>
-                    <input id="phone" name="phone" autocomplete="tel" required placeholder="07…" />
+                    <input id="phone" required autocomplete="tel" placeholder="07…" />
                   </div>
-                </div>
-
-                <div class="form-row">
-                  <div class="field">
-                    <label for="email">Email</label>
-                    <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" />
-                  </div>
-                  <div class="field">
-                    <label for="postcode">Postcode</label>
-                    <input id="postcode" name="postcode" autocomplete="postal-code" placeholder="E8 / E9 / …" />
-                  </div>
-                </div>
-
-                <div class="field">
-                  <label for="service">Service needed</label>
-                  <select id="service" name="service">
-                    <option>Emergency plumbing</option>
-                    <option>General plumbing</option>
-                    <option>Heating / boiler</option>
-                    <option>Drainage / blocked drains</option>
-                    <option>Appliance repair</option>
-                    <option>Bathroom / kitchen installation</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-
-                <div class="field">
-                  <label for="message">What’s the issue?</label>
-                  <textarea id="message" name="message" required placeholder="Describe the problem (e.g., leak, blocked toilet, boiler fault, etc.)"></textarea>
                 </div>
 
                 <button class="btn primary" type="submit">Send request</button>
-                <p class="fineprint">
-                  This form opens your email client by default (no backend required). If you want it to submit to a server,
-                  tell me what you’re using (Vercel, Netlify, etc.) and I’ll wire it up.
+                <p class="note" style="margin-top:10px;">
+                  No backend required: this opens your email client. Want WhatsApp button or direct form submission? Tell me your host (Vercel/Netlify).
                 </p>
               </form>
             </div>
@@ -593,162 +621,124 @@
       </div>
     </section>
 
-    <div class="divider"></div>
-
     <!-- SERVICES -->
     <section id="services">
       <div class="wrap">
-        <div class="section-head">
+        <div class="head">
           <div>
-            <h3>Services</h3>
-            <p>Emergency and routine support for homes and businesses — plumbing, heating, drainage, and appliance repair.</p>
+            <h3>Electrical services</h3>
+            <p>Designed for real enquiries: emergency issues, compliance, upgrades, and installations.</p>
           </div>
-          <a class="btn" href="#quote">Get a quote</a>
+          <a class="btn" href="#quote">Get estimate</a>
         </div>
 
         <div class="grid-3">
-          <div class="tile">
-            <h4>Emergency Plumbing (24/7)</h4>
-            <p>Burst pipes, major leaks, no water, flooding, urgent failures — rapid response.</p>
+          <div class="card">
+            <h4>Emergency callouts</h4>
+            <p>Loss of power, sparking sockets, overheating, tripping RCD — urgent response options.</p>
             <ul class="list">
-              <li><span class="check" aria-hidden="true"></span>Leaks, burst pipes, overflows</li>
-              <li><span class="check" aria-hidden="true"></span>Out-of-hours attendance</li>
-              <li><span class="check" aria-hidden="true"></span>Minimise damage fast</li>
+              <li><span class="tick" aria-hidden="true"></span>Safety-first triage</li>
+              <li><span class="tick" aria-hidden="true"></span>Isolate & make safe</li>
+              <li><span class="tick" aria-hidden="true"></span>Repair where possible</li>
             </ul>
           </div>
 
-          <div class="tile">
-            <h4>General Plumbing</h4>
-            <p>Everyday repairs and upgrades to keep your home running properly.</p>
+          <div class="card">
+            <h4>Fault finding</h4>
+            <p>Intermittent trips, nuisance tripping, dead circuits, flickering lights, unexplained faults.</p>
             <ul class="list">
-              <li><span class="check" aria-hidden="true"></span>Taps, washers, stopcocks</li>
-              <li><span class="check" aria-hidden="true"></span>Toilets, sinks, showers</li>
-              <li><span class="check" aria-hidden="true"></span>Pumps, immersion heaters</li>
+              <li><span class="tick" aria-hidden="true"></span>Test & identify root cause</li>
+              <li><span class="tick" aria-hidden="true"></span>Clear explanation</li>
+              <li><span class="tick" aria-hidden="true"></span>Targeted fix</li>
             </ul>
           </div>
 
-          <div class="tile">
-            <h4>Heating & Boilers</h4>
-            <p>Installations, servicing, breakdowns and heating system issues.</p>
+          <div class="card">
+            <h4>EICR certificates</h4>
+            <p>Landlords, homeowners, and businesses — inspection and reporting options.</p>
             <ul class="list">
-              <li><span class="check" aria-hidden="true"></span>Boiler install / replacement</li>
-              <li><span class="check" aria-hidden="true"></span>Boiler repairs & breakdowns</li>
-              <li><span class="check" aria-hidden="true"></span>Radiators, thermostats</li>
+              <li><span class="tick" aria-hidden="true"></span>Report with observations</li>
+              <li><span class="tick" aria-hidden="true"></span>Remedial work if needed</li>
+              <li><span class="tick" aria-hidden="true"></span>Documentation ready</li>
             </ul>
           </div>
         </div>
 
-        <div class="grid-3" style="margin-top:12px">
-          <div class="tile">
-            <h4>Drainage</h4>
-            <p>Blockages, waste pipe issues and drainage maintenance.</p>
-            <ul class="list">
-              <li><span class="check" aria-hidden="true"></span>Blocked drains, sinks, toilets</li>
-              <li><span class="check" aria-hidden="true"></span>Blocked manholes</li>
-              <li><span class="check" aria-hidden="true"></span>Drainage & waste pipe work</li>
-            </ul>
+        <div class="grid-3" style="margin-top:12px;">
+          <div class="card">
+            <h4>Consumer unit upgrades</h4>
+            <p>Modern protection (RCD/RCBO) upgrades for safety and reliability.</p>
           </div>
-
-          <div class="tile">
-            <h4>Appliance Repair</h4>
-            <p>Common appliance issues handled efficiently.</p>
-            <ul class="list">
-              <li><span class="check" aria-hidden="true"></span>Washing machine repairs</li>
-              <li><span class="check" aria-hidden="true"></span>Dishwasher repairs</li>
-              <li><span class="check" aria-hidden="true"></span>Leak diagnostics</li>
-            </ul>
+          <div class="card">
+            <h4>EV charger installs</h4>
+            <p>Home charging set-up, load checks, tidy cable routing, commissioning.</p>
           </div>
-
-          <div class="tile">
-            <h4>Installations & Refurbs</h4>
-            <p>End-to-end installs with a clean finish.</p>
-            <ul class="list">
-              <li><span class="check" aria-hidden="true"></span>Bathroom refurbishments</li>
-              <li><span class="check" aria-hidden="true"></span>Kitchen installations</li>
-              <li><span class="check" aria-hidden="true"></span>Accessible/disabled bathrooms</li>
-            </ul>
+          <div class="card">
+            <h4>Rewires & extensions</h4>
+            <p>Partial/full rewires, new circuits, kitchens/bathrooms, outdoor power and lighting.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- HOW IT WORKS -->
-    <section id="how">
+    <!-- PROCESS -->
+    <section id="process">
       <div class="wrap">
-        <div class="section-head">
+        <div class="head">
           <div>
-            <h3>How it works</h3>
-            <p>A simple, professional process designed for speed, clarity and minimal disruption.</p>
+            <h3>Process</h3>
+            <p>A practical workflow: diagnose, agree scope, complete safely, then document.</p>
           </div>
         </div>
 
         <div class="grid-3">
-          <div class="tile">
-            <h4>1) Tell us what’s wrong</h4>
-            <p>Call or send the form with the symptoms, postcode, and any access notes.</p>
+          <div class="card">
+            <h4>1) Safety check</h4>
+            <p>We assess risk and make the situation safe (especially for overheating/sparking/tripping).</p>
           </div>
-          <div class="tile">
-            <h4>2) Confirm scope & quote</h4>
-            <p>We clarify the job, provide a clear quote, then attend at the agreed time.</p>
+          <div class="card">
+            <h4>2) Diagnose & quote</h4>
+            <p>We isolate the fault, explain options, then quote the correct fix (not guesswork).</p>
           </div>
-          <div class="tile">
-            <h4>3) Fix, test, and tidy</h4>
-            <p>We complete the work, test the outcome, and leave the area clean and safe.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- COVERAGE -->
-    <section id="coverage">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <h3>Coverage</h3>
-            <p>We cover Hackney and surrounding East London postcodes. Primary focus: Hackney, E8 and E9 — plus E1–E18.</p>
-          </div>
-        </div>
-
-        <div class="tile">
-          <h4>Postcodes covered</h4>
-          <p class="muted">Tap a chip to copy it (useful when filling the form).</p>
-          <div class="chips" id="chips">
-            <span class="chip" data-copy="E1">E1</span><span class="chip" data-copy="E2">E2</span><span class="chip" data-copy="E3">E3</span>
-            <span class="chip" data-copy="E4">E4</span><span class="chip" data-copy="E5">E5</span><span class="chip" data-copy="E6">E6</span>
-            <span class="chip" data-copy="E7">E7</span><span class="chip" data-copy="E8">E8</span><span class="chip" data-copy="E9">E9</span>
-            <span class="chip" data-copy="E10">E10</span><span class="chip" data-copy="E11">E11</span><span class="chip" data-copy="E12">E12</span>
-            <span class="chip" data-copy="E13">E13</span><span class="chip" data-copy="E14">E14</span><span class="chip" data-copy="E15">E15</span>
-            <span class="chip" data-copy="E16">E16</span><span class="chip" data-copy="E17">E17</span><span class="chip" data-copy="E18">E18</span>
+          <div class="card">
+            <h4>3) Fix & certify</h4>
+            <p>We complete the work, test it, and provide certificates/documentation where applicable.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PRICING -->
-    <section id="pricing">
+    <!-- COMPLIANCE -->
+    <section id="certs">
       <div class="wrap">
-        <div class="section-head">
+        <div class="head">
           <div>
-            <h3>Pricing approach</h3>
-            <p>Clear, no-nonsense pricing. Confirm scope first, then proceed. Add your exact call-out/charges here if you publish them.</p>
+            <h3>Compliance & confidence</h3>
+            <p>Add your actual credentials here (e.g. NICEIC/NAPIT/Part P). This layout is ready for it.</p>
           </div>
         </div>
 
-        <div class="grid-2">
-          <div class="tile">
-            <h4>What you can expect</h4>
+        <div class="split">
+          <div class="card">
+            <h4>What customers care about</h4>
             <ul class="list">
-              <li><span class="check" aria-hidden="true"></span>Upfront quote before work starts</li>
-              <li><span class="check" aria-hidden="true"></span>Emergency and routine options</li>
-              <li><span class="check" aria-hidden="true"></span>Work fully guaranteed</li>
+              <li><span class="tick" aria-hidden="true"></span>Clear communication and time windows</li>
+              <li><span class="tick" aria-hidden="true"></span>Testing before sign-off</li>
+              <li><span class="tick" aria-hidden="true"></span>Neat finish, minimal disruption</li>
+              <li><span class="tick" aria-hidden="true"></span>Paperwork where required</li>
             </ul>
           </div>
-          <div class="tile">
-            <h4>Optional: add a price table</h4>
+
+          <div class="card">
+            <h4>Recommended additions</h4>
             <p class="muted">
-              If you send me your current “basic charges”, I’ll convert them into a clean pricing table here (mobile-friendly).
+              If you provide your exact membership numbers, insurance note, and service area list,
+              I’ll insert them with iconography and structured data for SEO.
             </p>
-            <a class="btn" href="#quote">Request a quote</a>
+            <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="btn" href="#quote">Update details</a>
+              <a class="btn primary" href="tel:YOUR_PHONE_NUMBER">Call now</a>
+            </div>
           </div>
         </div>
       </div>
@@ -757,40 +747,41 @@
     <!-- FAQ -->
     <section id="faq">
       <div class="wrap">
-        <div class="section-head">
+        <div class="head">
           <div>
             <h3>FAQ</h3>
-            <p>Quick answers for the most common questions — designed to reduce hesitation and increase enquiries.</p>
+            <p>Built for conversion: remove doubts and handle common objections.</p>
           </div>
         </div>
 
         <div class="grid-2">
           <details>
-            <summary>How fast can you attend?</summary>
-            <p>For urgent issues we target a 1-hour response where possible, depending on location, workload and access.</p>
+            <summary>What should I do if something is sparking or overheating?</summary>
+            <p>If safe to do so, turn off power at the consumer unit and avoid using the circuit. If there’s burning smell, smoke, or visible damage, treat it as an emergency and call immediately.</p>
           </details>
+
           <details>
-            <summary>Do you provide emergency service?</summary>
-            <p>Yes — emergency plumbing support is available 24/7 for urgent problems such as burst pipes, major leaks and no water.</p>
+            <summary>Do you do EICR for landlords?</summary>
+            <p>Yes. We can inspect, provide the report, and discuss any remedial work required to reach a satisfactory outcome.</p>
           </details>
+
           <details>
-            <summary>What areas do you cover?</summary>
-            <p>Hackney, E8 and E9 are key areas, plus coverage across E1–E18 (East London and surrounding).</p>
+            <summary>Why does my RCD keep tripping?</summary>
+            <p>Common causes include moisture ingress, a faulty appliance, insulation breakdown, or a wiring issue. Proper fault finding identifies the cause before replacing parts.</p>
           </details>
+
           <details>
-            <summary>What work do you handle?</summary>
-            <p>Plumbing repairs, heating/boilers, drainage issues, appliance repairs, and installations/refurbishments (bathrooms/kitchens).</p>
+            <summary>Can you install an EV charger at home?</summary>
+            <p>Yes. We check supply capacity, cable routing, and installation requirements, then commission and test the unit.</p>
           </details>
         </div>
 
-        <div class="divider"></div>
-
-        <div class="tile">
-          <h4>Ready to book?</h4>
-          <p class="muted">If it’s urgent, calling is fastest. Otherwise, send the form and include postcode + issue details.</p>
-          <div class="hero-actions" style="margin:12px 0 0">
+        <div class="card" style="margin-top:12px;">
+          <h4>Book an electrician</h4>
+          <p class="muted">For urgent electrical issues, calling is fastest. For everything else, use the estimate console.</p>
+          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
             <a class="btn primary" href="tel:YOUR_PHONE_NUMBER">Call now</a>
-            <a class="btn" href="#quote">Send request</a>
+            <a class="btn" href="#quote">Get estimate</a>
           </div>
         </div>
       </div>
@@ -801,26 +792,30 @@
     <div class="wrap">
       <div class="foot">
         <div>
-          <div class="brand" style="min-width:unset">
-            <span class="logo" aria-hidden="true"></span>
+          <div class="brand" style="min-width:unset;">
+            <span class="bolt" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M13 2L4 14h7l-1 8 10-14h-7l0-6z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </span>
             <span>
-              <h1 style="font-size:13px;margin:0;">Hackney Plumber</h1>
-              <p style="margin:2px 0 0;color:var(--muted);font-size:12px;">24/7 Emergency • No Call-Out Charge • E1–E18</p>
+              <h1 style="margin:0;font-size:13px;">YOUR_ELECTRICIAN_NAME</h1>
+              <p style="margin:2px 0 0;">Emergency • Fault Finding • EICR • EV Chargers</p>
             </span>
           </div>
 
           <p class="muted" style="margin:12px 0 0;">
-            Plumbing, heating, drainage & appliance repair across Hackney and East London. 10% discount available. Work fully guaranteed.
+            Service area: <strong>YOUR_SERVICE_AREA</strong>. Replace placeholders with your real details.
           </p>
-          <small>© <span id="year"></span> Hackney Plumber. All rights reserved.</small>
+          <small>© <span id="year"></span> YOUR_ELECTRICIAN_NAME. All rights reserved.</small>
         </div>
 
-        <div class="tile">
+        <div class="card">
           <h4>Contact</h4>
-          <ul class="list" style="margin-top:10px">
-            <li><span class="check" aria-hidden="true"></span><strong>Phone:</strong>&nbsp;<a href="tel:YOUR_PHONE_NUMBER">YOUR_PHONE_NUMBER</a></li>
-            <li><span class="check" aria-hidden="true"></span><strong>Email:</strong>&nbsp;<a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a></li>
-            <li><span class="check" aria-hidden="true"></span><strong>Coverage:</strong>&nbsp;Hackney (E8/E9) + E1–E18</li>
+          <ul class="list" style="margin-top:10px;">
+            <li><span class="tick" aria-hidden="true"></span><strong>Phone:</strong>&nbsp;<a href="tel:YOUR_PHONE_NUMBER">YOUR_PHONE_NUMBER</a></li>
+            <li><span class="tick" aria-hidden="true"></span><strong>Email:</strong>&nbsp;<a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a></li>
+            <li><span class="tick" aria-hidden="true"></span><strong>Hours:</strong>&nbsp;Emergency options available</li>
           </ul>
         </div>
       </div>
@@ -828,68 +823,118 @@
   </footer>
 
   <script>
-    // ====== Mobile menu ======
+    // Mobile menu
     const menuBtn = document.getElementById('menuBtn');
     const drawer = document.getElementById('drawer');
-    if (menuBtn && drawer) {
+    if(menuBtn && drawer){
       menuBtn.addEventListener('click', () => {
         const open = drawer.style.display === 'block';
         drawer.style.display = open ? 'none' : 'block';
         menuBtn.setAttribute('aria-expanded', String(!open));
       });
-      // close on navigation
-      drawer.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-          drawer.style.display = 'none';
-          menuBtn.setAttribute('aria-expanded', 'false');
-        });
-      });
+      drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        drawer.style.display = 'none';
+        menuBtn.setAttribute('aria-expanded','false');
+      }));
     }
 
-    // ====== Year ======
+    // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ====== Copy postcode chips ======
-    const chips = document.getElementById('chips');
-    if (chips && navigator.clipboard) {
-      chips.addEventListener('click', async (e) => {
-        const t = e.target.closest('[data-copy]');
-        if (!t) return;
-        try{
-          await navigator.clipboard.writeText(t.getAttribute('data-copy'));
-          const old = t.textContent;
-          t.textContent = old + " ✓";
-          setTimeout(() => t.textContent = old, 900);
-        }catch(_){}
-      });
+    // Instant estimate logic (simple rules-of-thumb)
+    const job = document.getElementById('job');
+    const property = document.getElementById('property');
+    const urgency = document.getElementById('urgency');
+    const rangeEl = document.getElementById('range');
+    const visitEl = document.getElementById('visit');
+
+    const base = {
+      emergency: { min: 120, max: 260, visit: "Emergency callout" },
+      fault:     { min: 90,  max: 210, visit: "Diagnostic visit" },
+      eicr:      { min: 150, max: 320, visit: "Inspection appointment" },
+      rewire:    { min: 1800,max: 6500,visit: "Survey + quote" },
+      cu:        { min: 450, max: 950, visit: "Upgrade appointment" },
+      ev:        { min: 650, max: 1400,visit: "Install appointment" },
+      lights:    { min: 90,  max: 350, visit: "Install/repair visit" },
+      sockets:   { min: 80,  max: 260, visit: "Install/repair visit" }
+    };
+
+    function multiplier(){
+      let m = 1;
+      const p = property.value;
+      const u = urgency.value;
+
+      if(p === 'commercial') m *= 1.25;
+      if(p === 'house') m *= 1.08;
+
+      if(u === 'today') m *= 1.18;
+      if(u === '48h') m *= 1.08;
+      if(u === 'flex') m *= 0.98;
+
+      return m;
     }
 
-    // ====== Form: mailto fallback (no backend needed) ======
-    const form = document.getElementById('quoteForm');
-    form?.addEventListener('submit', (e) => {
+    function fmtGBP(x){
+      // Round to nearest 5 for nicer ranges
+      const r = Math.round(x / 5) * 5;
+      return "£" + r.toLocaleString("en-GB");
+    }
+
+    function updateEstimate(){
+      const key = job.value;
+      const b = base[key];
+      const m = multiplier();
+      const min = b.min * m;
+      const max = b.max * m;
+
+      rangeEl.textContent = `${fmtGBP(min)} – ${fmtGBP(max)}`;
+      visitEl.textContent = b.visit;
+
+      // LED changes with job urgency
+      const led = document.querySelector('.led');
+      if(key === 'emergency' || urgency.value === 'today'){
+        led.style.background = 'rgba(255,77,90,.95)';
+        led.style.boxShadow = '0 0 18px rgba(255,77,90,.35)';
+      } else {
+        led.style.background = 'rgba(255,176,32,.95)';
+        led.style.boxShadow = '0 0 18px rgba(255,176,32,.35)';
+      }
+    }
+
+    [job, property, urgency].forEach(el => el.addEventListener('change', updateEstimate));
+    updateEstimate();
+
+    // Form: mailto (no backend)
+    const form = document.getElementById('estimateForm');
+    form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const data = new FormData(form);
-      const name = data.get('name') || '';
-      const phone = data.get('phone') || '';
-      const email = data.get('email') || '';
-      const postcode = data.get('postcode') || '';
-      const service = data.get('service') || '';
-      const message = data.get('message') || '';
 
-      const subject = encodeURIComponent(`Quote request: ${service} (${postcode})`);
+      const postcode = document.getElementById('postcode').value || '';
+      const details = document.getElementById('details').value || '';
+      const name = document.getElementById('name').value || '';
+      const phone = document.getElementById('phone').value || '';
+
+      const jt = job.options[job.selectedIndex].text;
+      const pt = property.options[property.selectedIndex].text;
+      const ut = urgency.options[urgency.selectedIndex].text;
+
+      const subject = encodeURIComponent(`Electrical job request: ${jt} (${postcode})`);
       const body = encodeURIComponent(
-`Name: ${name}
-Phone: ${phone}
-Email: ${email}
+`Job type: ${jt}
+Property: ${pt}
+Urgency: ${ut}
 Postcode: ${postcode}
-Service: ${service}
 
-Issue:
-${message}
+Name: ${name}
+Phone: ${phone}
+
+Details:
+${details}
+
+Estimate shown on site: ${rangeEl.textContent}
 `
       );
 
-      // Replace YOUR_EMAIL below
       window.location.href = `mailto:YOUR_EMAIL?subject=${subject}&body=${body}`;
     });
   </script>
