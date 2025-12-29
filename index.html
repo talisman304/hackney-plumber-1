@@ -2,831 +2,781 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Local electrician for emergencies, fault finding, rewires, EV chargers and EICR certificates. Fast response, clear pricing, professional workmanship." />
-  <title>Local Electrician | Emergency Callouts • EICR • EV Chargers</title>
-  <meta name="theme-color" content="#07090f" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>React & Assist Plumbing | 24 Hour Free Phone Nationwide | 0800 987 0895</title>
+  <meta name="description" content="React & Assist Plumbing — 24 hour free phone nationwide. Emergency call out, plumbing repairs, heating, drains, toilets and sinks. Call 0800 987 0895." />
 
   <style>
-    /* ===========================
-       ELECTRICIAN THEME SYSTEM
-       - Industrial dark + neon amber/cyan
-       - Circuit-board background
-       - Distinct layout: estimate panel + service selector
-       =========================== */
-
     :root{
-      --bg: #07090f;
-      --bg2:#0b0f1b;
-      --panel: rgba(255,255,255,.06);
-      --panel2: rgba(255,255,255,.09);
-      --line: rgba(255,255,255,.12);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.72);
-      --faint: rgba(255,255,255,.55);
+      /* Green + White theme */
+      --bg: #ffffff;
+      --surface: #f6fbf7;
+      --surface2: #eef8f0;
+      --text: #0b1a10;
+      --muted: #3a5a46;
+      --line: rgba(14, 74, 39, .18);
 
-      --amber:#ffb020;
-      --cyan:#4de7ff;
-      --good:#40f58a;
-      --danger:#ff4d5a;
+      --green-900:#0b3b1e;
+      --green-800:#0e4a27;
+      --green-700:#136234;
+      --green-600:#178a43;
+      --green-500:#1fb255;
+      --green-100:#e7f7ec;
+
+      --shadow: 0 18px 60px rgba(9, 33, 18, .12);
+      --shadow2: 0 12px 30px rgba(9, 33, 18, .10);
 
       --radius: 18px;
       --max: 1180px;
-      --pad: clamp(16px, 3.5vw, 28px);
-      --shadow: 0 18px 70px rgba(0,0,0,.55);
+      --pad: clamp(16px, 3vw, 28px);
     }
 
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
     body{
       margin:0;
-      color:var(--text);
-      background:
-        radial-gradient(900px 560px at 12% 0%, rgba(255,176,32,.16), transparent 55%),
-        radial-gradient(900px 560px at 92% 10%, rgba(77,231,255,.12), transparent 55%),
-        radial-gradient(900px 560px at 50% 110%, rgba(64,245,138,.10), transparent 60%),
-        linear-gradient(180deg, var(--bg), var(--bg2));
       font: 16px/1.55 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      letter-spacing:.2px;
-      overflow-x:hidden;
-    }
-
-    a{ color:inherit; text-decoration:none; }
-    .wrap{ max-width:var(--max); margin:0 auto; padding:0 var(--pad); }
-
-    /* Circuit grid background layer */
-    .circuit{
-      position:fixed; inset:0; pointer-events:none; z-index:-1; opacity:.55;
+      color: var(--text);
       background:
-        linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: radial-gradient(700px 420px at 50% 10%, black 60%, transparent 100%);
-    }
-    .circuit:after{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(circle at 18% 22%, rgba(255,176,32,.20) 0 2px, transparent 3px),
-        radial-gradient(circle at 66% 18%, rgba(77,231,255,.18) 0 2px, transparent 3px),
-        radial-gradient(circle at 78% 42%, rgba(255,176,32,.14) 0 2px, transparent 3px),
-        radial-gradient(circle at 32% 56%, rgba(77,231,255,.12) 0 2px, transparent 3px);
-      opacity:.9;
+        radial-gradient(900px 520px at 10% 0%, rgba(31,178,85,.10), transparent 55%),
+        radial-gradient(900px 520px at 90% 10%, rgba(19,98,52,.08), transparent 55%),
+        var(--bg);
     }
 
-    /* Header */
+    a{ color: inherit; text-decoration:none; }
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+
+    /* ====== Top utility bar (callback strip) ====== */
+    .topbar{
+      background: linear-gradient(90deg, var(--green-900), var(--green-800));
+      color: #fff;
+      border-bottom: 1px solid rgba(255,255,255,.18);
+    }
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 10px 0;
+    }
+    .topbar-left{
+      display:flex; align-items:center; gap: 10px;
+      font-weight: 800;
+      letter-spacing: .2px;
+      white-space: nowrap;
+    }
+    .icon-phone{
+      width: 34px; height: 34px;
+      border-radius: 12px;
+      display:inline-flex; align-items:center; justify-content:center;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.18);
+    }
+    .icon-phone svg{ width: 18px; height: 18px; }
+
+    .callback{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
+    .callback input{
+      height: 36px;
+      padding: 0 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.25);
+      background: rgba(255,255,255,.12);
+      color:#fff;
+      outline:none;
+      width: 170px;
+    }
+    .callback input::placeholder{ color: rgba(255,255,255,.75); }
+    .btn{
+      height: 36px;
+      padding: 0 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.24);
+      background: rgba(255,255,255,.18);
+      color:#fff;
+      font-weight: 900;
+      cursor:pointer;
+      transition: transform .14s ease, background .14s ease;
+      white-space: nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.24); }
+    .btn.primary{
+      background: #fff;
+      color: var(--green-900);
+      border-color: rgba(255,255,255,.35);
+    }
+    .btn.primary:hover{ background: rgba(255,255,255,.92); }
+
+    /* ====== Header ====== */
     header{
-      position:sticky; top:0; z-index:40;
-      backdrop-filter: blur(14px);
-      background: linear-gradient(to bottom, rgba(7,9,15,.88), rgba(7,9,15,.35));
-      border-bottom:1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(255,255,255,.86);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
     }
     .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:14px; padding: 14px 0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 14px 0;
     }
     .brand{
-      display:flex; align-items:center; gap:12px;
-      min-width: 240px;
+      display:flex; align-items:center; gap: 12px;
+      min-width: 260px;
     }
-    .bolt{
-      width: 42px; height: 42px; border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.14);
+    .mark{
+      width: 44px; height: 44px;
+      border-radius: 16px;
       background:
-        radial-gradient(circle at 30% 20%, rgba(255,176,32,.9), rgba(255,176,32,.08) 60%, transparent 62%),
-        radial-gradient(circle at 70% 75%, rgba(77,231,255,.85), rgba(77,231,255,.06) 60%, transparent 62%),
-        rgba(255,255,255,.05);
-      box-shadow: 0 16px 48px rgba(0,0,0,.35);
-      position:relative; overflow:hidden;
+        radial-gradient(circle at 30% 30%, rgba(31,178,85,.35), transparent 55%),
+        radial-gradient(circle at 75% 70%, rgba(19,98,52,.25), transparent 60%),
+        var(--green-100);
+      border: 1px solid rgba(14,74,39,.18);
+      display:flex; align-items:center; justify-content:center;
+      box-shadow: var(--shadow2);
     }
-    .bolt svg{
-      position:absolute; inset:0; margin:auto;
-      width: 22px; height: 22px;
-      filter: drop-shadow(0 8px 10px rgba(0,0,0,.35));
-      opacity:.95;
-    }
+    .mark svg{ width: 22px; height: 22px; }
     .brand h1{
       margin:0;
       font-size: 14px;
-      font-weight: 900;
-      letter-spacing: .8px;
+      font-weight: 1000;
+      letter-spacing: .6px;
       text-transform: uppercase;
+      color: var(--green-900);
     }
     .brand p{
       margin:2px 0 0;
-      color: var(--muted);
       font-size: 12px;
+      color: var(--muted);
+      font-weight: 700;
     }
 
     nav ul{
       list-style:none; margin:0; padding:0;
-      display:flex; gap: 14px; align-items:center;
+      display:flex; gap: 12px; align-items:center;
     }
     nav a{
+      display:inline-flex; align-items:center;
       padding: 10px 10px;
       border-radius: 12px;
-      color: var(--muted);
-      font-weight: 800;
+      color: var(--green-900);
+      font-weight: 900;
       font-size: 13px;
-      transition: background .15s ease, color .15s ease;
+      transition: background .14s ease;
     }
-    nav a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
+    nav a:hover{ background: rgba(31,178,85,.10); }
 
-    .cta{
-      display:flex; gap:10px; align-items:center; justify-content:flex-end;
-      min-width: 360px;
+    .nav-cta{
+      display:flex; align-items:center; gap: 10px;
+      justify-content:flex-end;
     }
-    .tag{
+    .call-pill{
       display:none;
-      padding: 9px 12px;
+      padding: 10px 12px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.05);
-      color: var(--muted);
+      border: 1px solid rgba(14,74,39,.18);
+      background: rgba(31,178,85,.08);
+      color: var(--green-900);
+      font-weight: 1000;
       font-size: 13px;
-      white-space:nowrap;
-      font-weight: 800;
+      white-space: nowrap;
     }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:10px;
+    .call-link{
+      display:inline-flex; align-items:center; gap: 10px;
       padding: 11px 14px;
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      font-weight: 900;
-      font-size: 14px;
-      cursor:pointer;
-      transition: transform .14s ease, background .14s ease, border-color .14s ease;
-      user-select:none;
+      border: 1px solid rgba(14,74,39,.20);
+      background: rgba(255,255,255,.9);
+      color: var(--green-900);
+      font-weight: 1000;
+      box-shadow: var(--shadow2);
+      transition: transform .14s ease;
+      white-space: nowrap;
     }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.22); }
-    .btn.primary{
-      background: linear-gradient(135deg, rgba(255,176,32,.95), rgba(77,231,255,.85));
-      color: #0a0c12;
-      border-color: rgba(255,255,255,.22);
-      box-shadow: 0 18px 55px rgba(255,176,32,.14);
-    }
-    .btn.danger{
-      background: rgba(255,77,90,.16);
-      border-color: rgba(255,77,90,.35);
-    }
-    .btn.small{ padding: 9px 12px; border-radius: 12px; font-size: 13px; }
+    .call-link:hover{ transform: translateY(-1px); }
 
-    .menu{ display:none; }
-
+    .menu-btn{ display:none; }
     .drawer{
       display:none;
+      padding: 10px 0 14px;
       border-top: 1px solid var(--line);
-      padding: 12px 0 16px;
     }
-    .drawer a{ display:block; padding: 12px 10px; border-radius: 12px; font-weight: 800; color: var(--muted); }
-    .drawer a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
+    .drawer a{
+      display:block;
+      padding: 12px 10px;
+      border-radius: 12px;
+      font-weight: 900;
+      color: var(--green-900);
+    }
+    .drawer a:hover{ background: rgba(31,178,85,.10); }
 
-    /* Hero */
-    .hero{ padding: clamp(26px, 5vw, 66px) 0 12px; }
-    .hero-grid{
+    /* ====== Main layout ====== */
+    main{ padding: 22px 0 40px; }
+    .grid{
       display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap: clamp(16px, 3.5vw, 28px);
+      grid-template-columns: 1.35fr .65fr;
+      gap: 16px;
       align-items:start;
     }
 
-    .kicker{
-      display:inline-flex; align-items:center; gap:10px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.05);
-      color: var(--muted);
-      font-weight: 900;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing:.6px;
-    }
-    .pulse{
-      width: 10px; height: 10px; border-radius: 999px;
-      background: var(--good);
-      box-shadow: 0 0 0 6px rgba(64,245,138,.14);
-      position:relative;
-    }
-    .pulse:after{
-      content:"";
-      position:absolute; inset:-12px;
-      border-radius:999px;
-      border:1px solid rgba(64,245,138,.25);
-      animation: ping 1.8s ease-out infinite;
-    }
-    @keyframes ping{
-      0%{ transform:scale(.4); opacity:.0; }
-      20%{ opacity:.7; }
-      100%{ transform:scale(1.15); opacity:0; }
-    }
-
-    h2{
-      margin: 14px 0 10px;
-      font-size: clamp(30px, 4.2vw, 48px);
-      line-height: 1.05;
-      letter-spacing: -1px;
-    }
-    .lead{
-      margin:0 0 18px;
-      color: var(--muted);
-      font-size: clamp(15px, 1.4vw, 18px);
-      max-width: 62ch;
-    }
-
-    .hero-actions{
-      display:flex; flex-wrap:wrap; gap:10px;
-      margin: 16px 0 12px;
-    }
-
-    .signal{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 10px;
-      margin-top: 14px;
-    }
-    .sig{
+    .panel{
       border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      padding: 14px;
-      box-shadow: 0 10px 34px rgba(0,0,0,.22);
-    }
-    .sig strong{ display:block; font-size: 14px; }
-    .sig span{ display:block; margin-top: 4px; color: var(--muted); font-size: 13px; }
-
-    /* Right column: Estimate console */
-    .console{
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,.14);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.04));
-      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.92);
+      box-shadow: var(--shadow2);
       overflow:hidden;
     }
-    .console-top{
-      display:flex; align-items:center; justify-content:space-between;
+    .panel .hd{
       padding: 14px 16px;
-      border-bottom: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.14);
+      background: linear-gradient(90deg, rgba(31,178,85,.18), rgba(255,255,255,0));
+      border-bottom: 1px solid var(--line);
     }
-    .console-top h3{
+    .panel .hd h2{
       margin:0;
-      font-size: 14px;
-      letter-spacing:.4px;
-      text-transform: uppercase;
-      font-weight: 900;
-      color: rgba(255,255,255,.88);
+      font-size: 20px;
+      letter-spacing:-.3px;
+      color: var(--green-900);
     }
-    .status{
-      display:inline-flex; gap:8px; align-items:center;
-      color: var(--muted); font-size: 12px; font-weight: 900;
-      letter-spacing:.4px; text-transform:uppercase;
-    }
-    .led{
-      width:10px; height:10px; border-radius: 3px;
-      background: rgba(255,176,32,.95);
-      box-shadow: 0 0 18px rgba(255,176,32,.35);
+    .panel .bd{ padding: 16px; }
+
+    .lead{
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-weight: 650;
     }
 
-    .console-inner{ padding: 16px; display:grid; gap: 10px; }
-    .field{ display:grid; gap:6px; }
+    .notice{
+      margin: 12px 0 0;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(31,178,85,.25);
+      background: var(--surface);
+      color: var(--green-900);
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    /* Form */
+    .form{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 12px;
+      margin-top: 12px;
+    }
+    .field{ display:grid; gap: 6px; }
     label{
       font-size: 12px;
       color: var(--muted);
       font-weight: 900;
-      letter-spacing:.35px;
+      letter-spacing: .2px;
     }
-    input, select, textarea{
+    input, textarea{
       width:100%;
       padding: 12px 12px;
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.22);
-      color: var(--text);
+      border: 1px solid rgba(14,74,39,.20);
+      background: #fff;
       outline:none;
+      transition: box-shadow .14s ease, border-color .14s ease;
       font: inherit;
-      transition: border-color .14s ease, background .14s ease;
     }
-    input:focus, select:focus, textarea:focus{
-      border-color: rgba(255,176,32,.55);
-      background: rgba(0,0,0,.28);
+    input:focus, textarea:focus{
+      border-color: rgba(31,178,85,.55);
+      box-shadow: 0 0 0 4px rgba(31,178,85,.14);
     }
-    textarea{ min-height: 88px; resize: vertical; }
-    .row{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+    textarea{
+      min-height: 104px;
+      resize: vertical;
+    }
+    .span-2{ grid-column: 1 / -1; }
+    .submit-row{
+      display:flex; gap: 10px; flex-wrap:wrap; align-items:center;
+      margin-top: 8px;
+    }
+    .btn-green{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(14,74,39,.22);
+      background: linear-gradient(180deg, var(--green-600), var(--green-700));
+      color:#fff;
+      font-weight: 1000;
+      cursor:pointer;
+      transition: transform .14s ease, filter .14s ease;
+    }
+    .btn-green:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+    .btn-outline{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(14,74,39,.22);
+      background: #fff;
+      color: var(--green-900);
+      font-weight: 1000;
+      cursor:pointer;
+      transition: transform .14s ease, background .14s ease;
+    }
+    .btn-outline:hover{ transform: translateY(-1px); background: rgba(31,178,85,.08); }
 
-    .estimate{
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.035);
-      padding: 14px;
-      display:grid; gap:8px;
+    .fineprint{
+      margin: 10px 0 0;
+      color: rgba(11,26,16,.58);
+      font-size: 12px;
+      font-weight: 650;
     }
-    .est-line{
-      display:flex; align-items:baseline; justify-content:space-between; gap:12px;
-    }
-    .est-line .k{ color: var(--muted); font-weight: 900; font-size: 12px; letter-spacing:.3px; text-transform:uppercase; }
-    .est-line .v{ font-weight: 1000; font-size: 18px; letter-spacing:-.3px; }
-    .note{ color: var(--faint); font-size: 12px; margin:0; }
 
-    /* Sections */
-    section{ padding: 34px 0; }
-    .head{
-      display:flex; align-items:flex-end; justify-content:space-between; gap:18px;
-      margin-bottom: 16px;
+    /* Right column cards */
+    .stack{ display:grid; gap: 12px; }
+    .hero-card{
+      padding: 16px;
+      background:
+        radial-gradient(900px 520px at 30% 0%, rgba(31,178,85,.18), transparent 50%),
+        linear-gradient(180deg, rgba(11,59,30,.06), rgba(255,255,255,.95));
     }
-    .head h3{
-      margin:0;
-      font-size: 22px;
-      letter-spacing:-.4px;
+    .hero-card h3{
+      margin:0 0 6px;
+      font-size: 18px;
+      color: var(--green-900);
+      letter-spacing:-.2px;
     }
-    .head p{ margin:0; color: var(--muted); max-width: 70ch; }
+    .hero-card p{
+      margin:0 0 12px;
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 13px;
+    }
+    .big-call{
+      display:flex; flex-direction:column; gap: 6px;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(31,178,85,.28);
+      background: var(--surface);
+    }
+    .big-call .t{ font-size: 12px; color: var(--muted); font-weight: 900; text-transform: uppercase; letter-spacing:.4px; }
+    .big-call .n{ font-size: 20px; font-weight: 1100; color: var(--green-900); letter-spacing: -.4px; }
+    .big-call .s{ font-size: 12px; color: rgba(11,26,16,.62); font-weight: 700; }
 
-    .grid-3{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 12px;
-    }
-    .grid-2{
+    .mini-grid{
       display:grid;
       grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .mini{
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.92);
+    }
+    .mini strong{ display:block; font-size: 13px; color: var(--green-900); }
+    .mini span{ display:block; margin-top: 4px; font-size: 12px; color: var(--muted); font-weight: 650; }
+
+    /* Brands block */
+    .brands{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .brand-chip{
+      padding: 10px 10px;
+      border-radius: 14px;
+      border: 1px dashed rgba(14,74,39,.22);
+      background: rgba(31,178,85,.06);
+      text-align:center;
+      color: var(--green-900);
+      font-weight: 950;
+      font-size: 12px;
+    }
+
+    /* Lower blocks (3 columns) */
+    .lower{
+      margin-top: 16px;
+      display:grid;
+      grid-template-columns: 1.2fr .9fr .9fr;
       gap: 12px;
     }
-    .card{
-      border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      padding: 16px;
+    .list{
+      margin: 8px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap: 8px;
     }
-    .card h4{ margin:0 0 6px; font-size: 15px; letter-spacing:-.2px; }
-    .card p{ margin:0; color: var(--muted); font-size: 13px; }
-
-    .list{ margin: 10px 0 0; padding:0; list-style:none; display:grid; gap:8px; }
-    .list li{ display:flex; gap:10px; color: var(--muted); font-size: 13px; align-items:flex-start; }
+    .list li{
+      display:flex; gap: 10px; align-items:flex-start;
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 13px;
+    }
     .tick{
-      width: 18px; height: 18px; border-radius: 6px;
-      border: 1px solid rgba(255,176,32,.35);
-      background: rgba(255,176,32,.12);
-      position:relative; flex: 0 0 auto; margin-top: 1px;
+      width: 18px; height: 18px;
+      border-radius: 6px;
+      border: 1px solid rgba(31,178,85,.35);
+      background: rgba(31,178,85,.14);
+      flex: 0 0 auto;
+      margin-top: 1px;
+      position:relative;
     }
     .tick:after{
       content:"";
-      position:absolute; left:5px; top:5px;
+      position:absolute;
+      left:5px; top:5px;
       width: 8px; height: 4px;
-      border-left: 2px solid var(--amber);
-      border-bottom: 2px solid var(--amber);
+      border-left: 2px solid var(--green-600);
+      border-bottom: 2px solid var(--green-600);
       transform: rotate(-45deg);
     }
 
-    .split{
-      display:grid;
-      grid-template-columns: 1fr .95fr;
-      gap: 12px;
-      align-items:start;
+    .scrollbox{
+      height: 230px;
+      overflow:auto;
+      padding-right: 6px;
+    }
+    .scrollbox::-webkit-scrollbar{ width: 10px; }
+    .scrollbox::-webkit-scrollbar-thumb{
+      background: rgba(14,74,39,.18);
+      border-radius: 999px;
+      border: 3px solid rgba(255,255,255,.9);
     }
 
-    /* FAQ */
-    details{
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      padding: 12px 14px;
+    .quote{
+      border-left: 4px solid rgba(31,178,85,.45);
+      padding: 10px 12px;
+      background: rgba(31,178,85,.06);
+      border-radius: 14px;
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 13px;
     }
-    summary{
-      cursor:pointer;
-      font-weight: 1000;
-      color: var(--text);
-      list-style:none;
-    }
-    summary::-webkit-details-marker{ display:none; }
-    details p{ margin: 10px 0 0; color: var(--muted); font-size: 13px; }
+    .quote strong{ color: var(--green-900); }
 
     /* Footer */
     footer{
-      padding: 28px 0 40px;
+      margin-top: 18px;
       border-top: 1px solid var(--line);
-      background: rgba(0,0,0,.12);
+      background: var(--surface2);
+      color: var(--muted);
     }
     .foot{
-      display:grid; grid-template-columns: 1.2fr .8fr; gap: 14px;
-      align-items:start;
+      display:flex; justify-content:space-between; gap: 12px; flex-wrap:wrap;
+      padding: 14px 0;
+      font-weight: 750;
+      font-size: 13px;
     }
-    small{ color: var(--faint); }
+    .foot a{ text-decoration: underline; color: var(--green-900); }
 
     /* Responsive */
     @media (max-width: 980px){
+      .grid{ grid-template-columns: 1fr; }
+      .lower{ grid-template-columns: 1fr; }
       nav ul{ display:none; }
-      .menu{ display:inline-flex; }
-      .cta{ min-width: unset; }
-      .hero-grid{ grid-template-columns: 1fr; }
-      .signal{ grid-template-columns: 1fr; }
-      .grid-3{ grid-template-columns: 1fr; }
-      .grid-2{ grid-template-columns: 1fr; }
-      .split{ grid-template-columns: 1fr; }
-      .row{ grid-template-columns: 1fr; }
-      .foot{ grid-template-columns: 1fr; }
+      .menu-btn{ display:inline-flex; }
+      .drawer{ display:none; }
+      .form{ grid-template-columns: 1fr; }
+      .callback input{ width: 150px; }
     }
     @media (min-width: 981px){
-      .tag{ display:inline-flex; }
-    }
-    @media (prefers-reduced-motion: reduce){
-      .pulse:after{ animation:none; }
-      *{ scroll-behavior:auto !important; }
-      .btn{ transition:none; }
+      .call-pill{ display:inline-flex; }
     }
   </style>
 
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
-    "@type":"Electrician",
-    "name":"YOUR_ELECTRICIAN_NAME",
-    "areaServed":"YOUR_SERVICE_AREA",
-    "url":"https://example.com",
-    "telephone":"YOUR_PHONE_NUMBER"
+    "@type":"Plumber",
+    "name":"React & Assist Plumbing",
+    "telephone":"0800 987 0895",
+    "areaServed":"Nationwide (UK)",
+    "availableChannel":{
+      "@type":"ServiceChannel",
+      "servicePhone":{
+        "@type":"ContactPoint",
+        "telephone":"0800 987 0895",
+        "contactType":"customer service"
+      }
+    }
   }
   </script>
 </head>
 
 <body>
-  <div class="circuit" aria-hidden="true"></div>
+  <!-- Top callback strip -->
+  <div class="topbar">
+    <div class="wrap">
+      <div class="topbar-inner">
+        <div class="topbar-left">
+          <span class="icon-phone" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M7 3h3l2 6-2 1c1.2 2.6 3.2 4.6 5.8 5.8l1-2 6 2v3c0 1.1-.9 2-2 2C10.8 21 3 13.2 3 3c0-1.1.9-2 2-2h2z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span>Request a Free Call Back</span>
+        </div>
 
+        <form class="callback" id="callbackForm">
+          <input name="cb_name" placeholder="Name" required />
+          <input name="cb_phone" placeholder="Phone No" required />
+          <button class="btn primary" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
   <header>
     <div class="wrap">
       <div class="nav">
-        <a class="brand" href="#top" aria-label="Electrician home">
-          <span class="bolt" aria-hidden="true">
+        <a class="brand" href="#top" aria-label="React & Assist Plumbing home">
+          <span class="mark" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
-              <path d="M13 2L4 14h7l-1 8 10-14h-7l0-6z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M9 3h6v4h-6V3z" stroke="#0b3b1e" stroke-width="2"/>
+              <path d="M10 7v14m4-14v14" stroke="#0b3b1e" stroke-width="2" stroke-linecap="round"/>
+              <path d="M6 12h12" stroke="#1fb255" stroke-width="2" stroke-linecap="round"/>
             </svg>
           </span>
           <span>
-            <h1>YOUR_ELECTRICIAN_NAME</h1>
-            <p>Emergency • Fault Finding • EICR • EV Chargers</p>
+            <h1>React & Assist Plumbing</h1>
+            <p>24 Hour Free Phone Nationwide • Call: <strong>0800 987 0895</strong></p>
           </span>
         </a>
 
         <nav aria-label="Primary">
           <ul>
+            <li><a href="#enquiry">Enquiry</a></li>
             <li><a href="#services">Services</a></li>
-            <li><a href="#process">Process</a></li>
-            <li><a href="#certs">Compliance</a></li>
-            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#areas">Areas Covered</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
           </ul>
         </nav>
 
-        <div class="cta">
-          <span class="tag">Rapid response • Clear pricing • Neat workmanship</span>
-          <a class="btn small" href="#quote">Instant estimate</a>
-          <a class="btn primary" href="tel:YOUR_PHONE_NUMBER">Call now</a>
-          <button class="btn menu" id="menuBtn" type="button" aria-expanded="false" aria-controls="drawer">Menu</button>
+        <div class="nav-cta">
+          <span class="call-pill">24 Hour Free Phone Nationwide</span>
+          <a class="call-link" href="tel:08009870895">Call 0800 987 0895</a>
+          <button class="btn-outline menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="drawer">Menu</button>
         </div>
       </div>
 
-      <div class="drawer" id="drawer">
+      <div class="drawer" id="drawer" aria-label="Mobile menu">
+        <a href="#enquiry">Enquiry</a>
         <a href="#services">Services</a>
-        <a href="#process">Process</a>
-        <a href="#certs">Compliance</a>
-        <a href="#faq">FAQ</a>
-        <a href="#quote">Instant estimate</a>
-        <a href="tel:YOUR_PHONE_NUMBER">Call now</a>
+        <a href="#areas">Areas Covered</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="tel:08009870895">Call 0800 987 0895</a>
       </div>
     </div>
   </header>
 
   <main id="top">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="wrap">
-        <div class="hero-grid">
-          <div>
-            <span class="kicker"><span class="pulse" aria-hidden="true"></span> Same-day options for urgent electrical issues</span>
-            <h2>Electrician you can call when things trip, spark, or stop working.</h2>
+    <div class="wrap">
+      <div class="grid">
+        <!-- Main content (left) -->
+        <section class="panel" id="enquiry" aria-label="Contact our local plumbers">
+          <div class="hd">
+            <h2>Contact Our Local Plumbers</h2>
+          </div>
+          <div class="bd">
             <p class="lead">
-              From <strong>fault finding</strong> and <strong>emergency callouts</strong> to <strong>EICR certificates</strong>,
-              <strong>EV charger installs</strong>, and <strong>consumer unit upgrades</strong> — delivered with a clean finish and clear communication.
+              React & Assist have qualified local plumbers on call <strong>24 hours a day</strong>, <strong>7 days a week</strong>, <strong>365 days a year</strong>.
+              For heating, pipes, drains, toilets and sinks, we provide plumbing repair and installations with a professional finish.
             </p>
 
-            <div class="hero-actions">
-              <a class="btn primary" href="tel:YOUR_PHONE_NUMBER">Emergency? Call now</a>
-              <a class="btn danger" href="#quote">Non-urgent: get estimate</a>
-              <a class="btn" href="#services">Browse services</a>
-            </div>
-
-            <div class="signal" aria-label="Trust signals">
-              <div class="sig">
-                <strong>Fault finding first</strong>
-                <span>We diagnose properly before recommending work.</span>
-              </div>
-              <div class="sig">
-                <strong>Certificates & compliance</strong>
-                <span>EICR / installation certification options.</span>
-              </div>
-              <div class="sig">
-                <strong>Clean, tidy workmanship</strong>
-                <span>Respectful on-site and finished properly.</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Estimate console -->
-          <aside class="console" id="quote" aria-label="Instant estimate console">
-            <div class="console-top">
-              <h3>Instant estimate console</h3>
-              <div class="status"><span class="led" aria-hidden="true"></span> ready</div>
-            </div>
-
-            <div class="console-inner">
-              <div class="row">
-                <div class="field">
-                  <label for="job">Job type</label>
-                  <select id="job">
-                    <option value="emergency">Emergency callout</option>
-                    <option value="fault">Fault finding / intermittent trip</option>
-                    <option value="eicr">EICR certificate</option>
-                    <option value="rewire">Partial / full rewire</option>
-                    <option value="cu">Consumer unit upgrade</option>
-                    <option value="ev">EV charger install</option>
-                    <option value="lights">Lighting (internal/external)</option>
-                    <option value="sockets">Sockets / switches</option>
-                  </select>
-                </div>
-                <div class="field">
-                  <label for="property">Property type</label>
-                  <select id="property">
-                    <option value="flat">Flat</option>
-                    <option value="house">House</option>
-                    <option value="commercial">Commercial</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="field">
-                  <label for="postcode">Postcode</label>
-                  <input id="postcode" placeholder="e.g. E8" autocomplete="postal-code" />
-                </div>
-                <div class="field">
-                  <label for="urgency">Urgency</label>
-                  <select id="urgency">
-                    <option value="today">Today</option>
-                    <option value="48h">Within 48 hours</option>
-                    <option value="week">This week</option>
-                    <option value="flex">Flexible</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="estimate" aria-live="polite">
-                <div class="est-line">
-                  <span class="k">Estimated range</span>
-                  <span class="v" id="range">£—</span>
-                </div>
-                <div class="est-line">
-                  <span class="k">Likely visit</span>
-                  <span class="v" id="visit">—</span>
-                </div>
-                <p class="note">
-                  This is a guidance range. Exact pricing depends on access, parts, and confirmed scope.
-                </p>
-              </div>
-
-              <form id="estimateForm">
-                <div class="field">
-                  <label for="details">Brief details</label>
-                  <textarea id="details" required placeholder="What’s happening? Any burning smell, sparks, repeated tripping, or power loss?"></textarea>
-                </div>
-                <div class="row">
-                  <div class="field">
-                    <label for="name">Name</label>
-                    <input id="name" required autocomplete="name" placeholder="Your name" />
-                  </div>
-                  <div class="field">
-                    <label for="phone">Phone</label>
-                    <input id="phone" required autocomplete="tel" placeholder="07…" />
-                  </div>
-                </div>
-
-                <button class="btn primary" type="submit">Send request</button>
-                <p class="note" style="margin-top:10px;">
-                  No backend required: this opens your email client. Want WhatsApp button or direct form submission? Tell me your host (Vercel/Netlify).
-                </p>
-              </form>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="services">
-      <div class="wrap">
-        <div class="head">
-          <div>
-            <h3>Electrical services</h3>
-            <p>Designed for real enquiries: emergency issues, compliance, upgrades, and installations.</p>
-          </div>
-          <a class="btn" href="#quote">Get estimate</a>
-        </div>
-
-        <div class="grid-3">
-          <div class="card">
-            <h4>Emergency callouts</h4>
-            <p>Loss of power, sparking sockets, overheating, tripping RCD — urgent response options.</p>
-            <ul class="list">
-              <li><span class="tick" aria-hidden="true"></span>Safety-first triage</li>
-              <li><span class="tick" aria-hidden="true"></span>Isolate & make safe</li>
-              <li><span class="tick" aria-hidden="true"></span>Repair where possible</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <h4>Fault finding</h4>
-            <p>Intermittent trips, nuisance tripping, dead circuits, flickering lights, unexplained faults.</p>
-            <ul class="list">
-              <li><span class="tick" aria-hidden="true"></span>Test & identify root cause</li>
-              <li><span class="tick" aria-hidden="true"></span>Clear explanation</li>
-              <li><span class="tick" aria-hidden="true"></span>Targeted fix</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <h4>EICR certificates</h4>
-            <p>Landlords, homeowners, and businesses — inspection and reporting options.</p>
-            <ul class="list">
-              <li><span class="tick" aria-hidden="true"></span>Report with observations</li>
-              <li><span class="tick" aria-hidden="true"></span>Remedial work if needed</li>
-              <li><span class="tick" aria-hidden="true"></span>Documentation ready</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="grid-3" style="margin-top:12px;">
-          <div class="card">
-            <h4>Consumer unit upgrades</h4>
-            <p>Modern protection (RCD/RCBO) upgrades for safety and reliability.</p>
-          </div>
-          <div class="card">
-            <h4>EV charger installs</h4>
-            <p>Home charging set-up, load checks, tidy cable routing, commissioning.</p>
-          </div>
-          <div class="card">
-            <h4>Rewires & extensions</h4>
-            <p>Partial/full rewires, new circuits, kitchens/bathrooms, outdoor power and lighting.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROCESS -->
-    <section id="process">
-      <div class="wrap">
-        <div class="head">
-          <div>
-            <h3>Process</h3>
-            <p>A practical workflow: diagnose, agree scope, complete safely, then document.</p>
-          </div>
-        </div>
-
-        <div class="grid-3">
-          <div class="card">
-            <h4>1) Safety check</h4>
-            <p>We assess risk and make the situation safe (especially for overheating/sparking/tripping).</p>
-          </div>
-          <div class="card">
-            <h4>2) Diagnose & quote</h4>
-            <p>We isolate the fault, explain options, then quote the correct fix (not guesswork).</p>
-          </div>
-          <div class="card">
-            <h4>3) Fix & certify</h4>
-            <p>We complete the work, test it, and provide certificates/documentation where applicable.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- COMPLIANCE -->
-    <section id="certs">
-      <div class="wrap">
-        <div class="head">
-          <div>
-            <h3>Compliance & confidence</h3>
-            <p>Add your actual credentials here (e.g. NICEIC/NAPIT/Part P). This layout is ready for it.</p>
-          </div>
-        </div>
-
-        <div class="split">
-          <div class="card">
-            <h4>What customers care about</h4>
-            <ul class="list">
-              <li><span class="tick" aria-hidden="true"></span>Clear communication and time windows</li>
-              <li><span class="tick" aria-hidden="true"></span>Testing before sign-off</li>
-              <li><span class="tick" aria-hidden="true"></span>Neat finish, minimal disruption</li>
-              <li><span class="tick" aria-hidden="true"></span>Paperwork where required</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <h4>Recommended additions</h4>
-            <p class="muted">
-              If you provide your exact membership numbers, insurance note, and service area list,
-              I’ll insert them with iconography and structured data for SEO.
+            <p class="lead">
+              If you have any questions or would like a free quote from one of our local plumbers, fill in the form below and we will call you back as soon as possible.
             </p>
-            <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
-              <a class="btn" href="#quote">Update details</a>
-              <a class="btn primary" href="tel:YOUR_PHONE_NUMBER">Call now</a>
+
+            <form class="form" id="mainForm">
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" autocomplete="name" required />
+              </div>
+
+              <div class="field">
+                <label for="company">Company Name</label>
+                <input id="company" name="company" autocomplete="organization" />
+              </div>
+
+              <div class="field">
+                <label for="postcode">Post Code</label>
+                <input id="postcode" name="postcode" autocomplete="postal-code" />
+              </div>
+
+              <div class="field">
+                <label for="phone">Phone Number</label>
+                <input id="phone" name="phone" autocomplete="tel" required />
+              </div>
+
+              <div class="field span-2">
+                <label for="email">Email Address</label>
+                <input id="email" name="email" type="email" autocomplete="email" />
+              </div>
+
+              <div class="field span-2">
+                <label for="job">Job Description</label>
+                <textarea id="job" name="job" required placeholder="Briefly describe the issue (e.g. leak, blocked toilet, boiler problem, burst pipe)"></textarea>
+              </div>
+
+              <div class="span-2">
+                <div class="submit-row">
+                  <button class="btn-green" type="submit">Submit</button>
+                  <a class="btn-outline" href="tel:08009870895">Call 0800 987 0895</a>
+                </div>
+                <p class="fineprint">All calls are recorded and monitored for quality and training purposes.</p>
+              </div>
+            </form>
+
+            <div class="notice" id="services">
+              Services We Offer: fast response • free written quotes • insurance approved • domestic & commercial • 365 days a year • no call out charge
+            </div>
+
+            <ul class="list" style="margin-top:10px;">
+              <li><span class="tick" aria-hidden="true"></span>30–90 minute response (where possible)</li>
+              <li><span class="tick" aria-hidden="true"></span>Free written quotes</li>
+              <li><span class="tick" aria-hidden="true"></span>Insurance approved</li>
+              <li><span class="tick" aria-hidden="true"></span>Domestic & commercial properties</li>
+              <li><span class="tick" aria-hidden="true"></span>365 days a year</li>
+              <li><span class="tick" aria-hidden="true"></span>No call out charge</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Right sidebar -->
+        <aside class="stack" aria-label="Sidebar">
+          <div class="panel hero-card">
+            <div class="hd" style="background: linear-gradient(90deg, rgba(31,178,85,.22), rgba(255,255,255,0));">
+              <h2 style="font-size:18px;">Emergency Call Out</h2>
+            </div>
+            <div class="bd">
+              <h3>24 Hour Free Phone Nationwide</h3>
+              <p>From boiler repairs to burst pipe repair, we offer emergency call outs nationwide.</p>
+
+              <div class="big-call">
+                <span class="t">Call now</span>
+                <span class="n"><a href="tel:08009870895">0800 987 0895</a></span>
+                <span class="s">Fast help. Clear communication. Professional finish.</span>
+              </div>
+
+              <div class="mini-grid">
+                <div class="mini">
+                  <strong>Response</strong>
+                  <span>Same-day options for urgent issues</span>
+                </div>
+                <div class="mini">
+                  <strong>Quotes</strong>
+                  <span>Free written quotes available</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="hd">
+              <h2 style="font-size:16px;">Services For Popular Brands</h2>
+            </div>
+            <div class="bd">
+              <div class="brands" aria-label="Popular brands">
+                <div class="brand-chip">Glow-worm</div>
+                <div class="brand-chip">Vaillant</div>
+                <div class="brand-chip">Worcester</div>
+                <div class="brand-chip">Viessmann</div>
+                <div class="brand-chip">Ideal</div>
+                <div class="brand-chip">Baxi</div>
+              </div>
+              <p class="fineprint" style="margin-top:10px;">Replace brand chips with logos later if you have rights to use them.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Lower 3-column row -->
+      <section class="lower" aria-label="Lower content blocks">
+        <div class="panel" id="areas">
+          <div class="hd">
+            <h2 style="font-size:16px;">Areas Our Local Plumbers Cover</h2>
+          </div>
+          <div class="bd">
+            <p class="lead" style="margin-bottom:10px;">Add or edit the area list here. This box scrolls to keep the page compact.</p>
+            <div class="scrollbox">
+              <div class="quote" style="margin-bottom:10px;">
+                <strong>Example areas:</strong> Hackney, Islington, Tower Hamlets, Stratford, Canary Wharf, Shoreditch, Bethnal Green, Walthamstow, and nationwide coverage via our network.
+              </div>
+              <p class="fineprint">
+                Tip: paste your full “areas covered” text here (it will remain readable and tidy).
+              </p>
+              <p class="fineprint">
+                You can also replace this with postcode chips (E1, E2, E8, etc.) if you prefer.
+              </p>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- FAQ -->
-    <section id="faq">
-      <div class="wrap">
-        <div class="head">
-          <div>
-            <h3>FAQ</h3>
-            <p>Built for conversion: remove doubts and handle common objections.</p>
+        <div class="panel" id="testimonials">
+          <div class="hd">
+            <h2 style="font-size:16px;">Testimonials</h2>
+          </div>
+          <div class="bd">
+            <div class="quote">
+              <strong>Customer Name:</strong> Mr D Lloyd<br/>
+              Thank you for an excellent service and I want you to know how extremely happy I am with the engineer you sent out.
+              He was very polite and helpful in dealing with our problem.
+            </div>
+
+            <div class="quote" style="margin-top:10px;">
+              <strong>Customer Name:</strong> (Add more)<br/>
+              Quick response, clear advice, and the repair was completed neatly. Would recommend.
+            </div>
+
+            <p class="fineprint" style="margin-top:10px;">Replace with real testimonials for best conversion.</p>
           </div>
         </div>
 
-        <div class="grid-2">
-          <details>
-            <summary>What should I do if something is sparking or overheating?</summary>
-            <p>If safe to do so, turn off power at the consumer unit and avoid using the circuit. If there’s burning smell, smoke, or visible damage, treat it as an emergency and call immediately.</p>
-          </details>
+        <div class="panel">
+          <div class="hd">
+            <h2 style="font-size:16px;">Safety & Quality Approved</h2>
+          </div>
+          <div class="bd">
+            <ul class="list">
+              <li><span class="tick" aria-hidden="true"></span>Professional workmanship and clear communication</li>
+              <li><span class="tick" aria-hidden="true"></span>Documentation available where applicable</li>
+              <li><span class="tick" aria-hidden="true"></span>Insurance approved options</li>
+              <li><span class="tick" aria-hidden="true"></span>24 hour free phone nationwide: <a href="tel:08009870895" style="text-decoration:underline; color: var(--green-900);">0800 987 0895</a></li>
+            </ul>
 
-          <details>
-            <summary>Do you do EICR for landlords?</summary>
-            <p>Yes. We can inspect, provide the report, and discuss any remedial work required to reach a satisfactory outcome.</p>
-          </details>
-
-          <details>
-            <summary>Why does my RCD keep tripping?</summary>
-            <p>Common causes include moisture ingress, a faulty appliance, insulation breakdown, or a wiring issue. Proper fault finding identifies the cause before replacing parts.</p>
-          </details>
-
-          <details>
-            <summary>Can you install an EV charger at home?</summary>
-            <p>Yes. We check supply capacity, cable routing, and installation requirements, then commission and test the unit.</p>
-          </details>
-        </div>
-
-        <div class="card" style="margin-top:12px;">
-          <h4>Book an electrician</h4>
-          <p class="muted">For urgent electrical issues, calling is fastest. For everything else, use the estimate console.</p>
-          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
-            <a class="btn primary" href="tel:YOUR_PHONE_NUMBER">Call now</a>
-            <a class="btn" href="#quote">Get estimate</a>
+            <div class="notice" style="margin-top:12px;">
+              Want the “Gas Safe Registered” style panel? I can rebuild it in this theme without using the old low-res artwork.
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </main>
 
   <footer>
     <div class="wrap">
       <div class="foot">
+        <div>© <span id="year"></span> React & Assist Plumbing</div>
         <div>
-          <div class="brand" style="min-width:unset;">
-            <span class="bolt" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M13 2L4 14h7l-1 8 10-14h-7l0-6z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <span>
-              <h1 style="margin:0;font-size:13px;">YOUR_ELECTRICIAN_NAME</h1>
-              <p style="margin:2px 0 0;">Emergency • Fault Finding • EICR • EV Chargers</p>
-            </span>
-          </div>
-
-          <p class="muted" style="margin:12px 0 0;">
-            Service area: <strong>YOUR_SERVICE_AREA</strong>. Replace placeholders with your real details.
-          </p>
-          <small>© <span id="year"></span> YOUR_ELECTRICIAN_NAME. All rights reserved.</small>
-        </div>
-
-        <div class="card">
-          <h4>Contact</h4>
-          <ul class="list" style="margin-top:10px;">
-            <li><span class="tick" aria-hidden="true"></span><strong>Phone:</strong>&nbsp;<a href="tel:YOUR_PHONE_NUMBER">YOUR_PHONE_NUMBER</a></li>
-            <li><span class="tick" aria-hidden="true"></span><strong>Email:</strong>&nbsp;<a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a></li>
-            <li><span class="tick" aria-hidden="true"></span><strong>Hours:</strong>&nbsp;Emergency options available</li>
-          </ul>
+          <a href="#top">Where Possible</a> ·
+          <a href="#enquiry">Contact Us</a> ·
+          <a href="tel:08009870895">0800 987 0895</a>
         </div>
       </div>
     </div>
   </footer>
 
   <script>
-    // Mobile menu
+    // Mobile menu toggle
     const menuBtn = document.getElementById('menuBtn');
     const drawer = document.getElementById('drawer');
-    if(menuBtn && drawer){
+    if (menuBtn && drawer) {
       menuBtn.addEventListener('click', () => {
         const open = drawer.style.display === 'block';
         drawer.style.display = open ? 'none' : 'block';
@@ -834,108 +784,54 @@
       });
       drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
         drawer.style.display = 'none';
-        menuBtn.setAttribute('aria-expanded','false');
+        menuBtn.setAttribute('aria-expanded', 'false');
       }));
     }
 
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Instant estimate logic (simple rules-of-thumb)
-    const job = document.getElementById('job');
-    const property = document.getElementById('property');
-    const urgency = document.getElementById('urgency');
-    const rangeEl = document.getElementById('range');
-    const visitEl = document.getElementById('visit');
+    // Forms: mailto fallback (no backend required)
+    const EMAIL = "YOUR_EMAIL_HERE"; // optional: set to a real email
 
-    const base = {
-      emergency: { min: 120, max: 260, visit: "Emergency callout" },
-      fault:     { min: 90,  max: 210, visit: "Diagnostic visit" },
-      eicr:      { min: 150, max: 320, visit: "Inspection appointment" },
-      rewire:    { min: 1800,max: 6500,visit: "Survey + quote" },
-      cu:        { min: 450, max: 950, visit: "Upgrade appointment" },
-      ev:        { min: 650, max: 1400,visit: "Install appointment" },
-      lights:    { min: 90,  max: 350, visit: "Install/repair visit" },
-      sockets:   { min: 80,  max: 260, visit: "Install/repair visit" }
-    };
-
-    function multiplier(){
-      let m = 1;
-      const p = property.value;
-      const u = urgency.value;
-
-      if(p === 'commercial') m *= 1.25;
-      if(p === 'house') m *= 1.08;
-
-      if(u === 'today') m *= 1.18;
-      if(u === '48h') m *= 1.08;
-      if(u === 'flex') m *= 0.98;
-
-      return m;
+    function mailto(subject, body){
+      if (!EMAIL || EMAIL === "YOUR_EMAIL_HERE") return; // do nothing if not set
+      const s = encodeURIComponent(subject);
+      const b = encodeURIComponent(body);
+      window.location.href = `mailto:${EMAIL}?subject=${s}&body=${b}`;
     }
 
-    function fmtGBP(x){
-      // Round to nearest 5 for nicer ranges
-      const r = Math.round(x / 5) * 5;
-      return "£" + r.toLocaleString("en-GB");
-    }
-
-    function updateEstimate(){
-      const key = job.value;
-      const b = base[key];
-      const m = multiplier();
-      const min = b.min * m;
-      const max = b.max * m;
-
-      rangeEl.textContent = `${fmtGBP(min)} – ${fmtGBP(max)}`;
-      visitEl.textContent = b.visit;
-
-      // LED changes with job urgency
-      const led = document.querySelector('.led');
-      if(key === 'emergency' || urgency.value === 'today'){
-        led.style.background = 'rgba(255,77,90,.95)';
-        led.style.boxShadow = '0 0 18px rgba(255,77,90,.35)';
-      } else {
-        led.style.background = 'rgba(255,176,32,.95)';
-        led.style.boxShadow = '0 0 18px rgba(255,176,32,.35)';
-      }
-    }
-
-    [job, property, urgency].forEach(el => el.addEventListener('change', updateEstimate));
-    updateEstimate();
-
-    // Form: mailto (no backend)
-    const form = document.getElementById('estimateForm');
-    form.addEventListener('submit', (e) => {
+    document.getElementById('callbackForm')?.addEventListener('submit', (e) => {
       e.preventDefault();
-
-      const postcode = document.getElementById('postcode').value || '';
-      const details = document.getElementById('details').value || '';
-      const name = document.getElementById('name').value || '';
-      const phone = document.getElementById('phone').value || '';
-
-      const jt = job.options[job.selectedIndex].text;
-      const pt = property.options[property.selectedIndex].text;
-      const ut = urgency.options[urgency.selectedIndex].text;
-
-      const subject = encodeURIComponent(`Electrical job request: ${jt} (${postcode})`);
-      const body = encodeURIComponent(
-`Job type: ${jt}
-Property: ${pt}
-Urgency: ${ut}
-Postcode: ${postcode}
-
-Name: ${name}
-Phone: ${phone}
-
-Details:
-${details}
-
-Estimate shown on site: ${rangeEl.textContent}
-`
+      const data = new FormData(e.target);
+      const name = data.get('cb_name') || '';
+      const phone = data.get('cb_phone') || '';
+      mailto(
+        "Free callback request",
+        `Callback request\n\nName: ${name}\nPhone: ${phone}\n\nPlease call back as soon as possible.`
       );
+      alert("Request received. If you want this to submit to a server instead of email, tell me your host (Vercel/Netlify).");
+      e.target.reset();
+    });
 
-      window.location.href = `mailto:YOUR_EMAIL?subject=${subject}&body=${body}`;
+    document.getElementById('mainForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(e.target);
+      const payload =
+`Quote request
+
+Name: ${data.get('name') || ''}
+Company: ${data.get('company') || ''}
+Postcode: ${data.get('postcode') || ''}
+Phone: ${data.get('phone') || ''}
+Email: ${data.get('email') || ''}
+
+Job:
+${data.get('job') || ''}
+`;
+      mailto("Plumbing quote request", payload);
+      alert("Submitted. If you want direct form submission (no email client), I can wire it up.");
+      e.target.reset();
     });
   </script>
 </body>
