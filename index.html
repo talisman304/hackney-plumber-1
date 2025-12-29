@@ -61,7 +61,7 @@
     }
     .topbar-left{
       display:flex; align-items:center; gap: 10px;
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing: .2px;
       white-space: nowrap;
     }
@@ -99,7 +99,7 @@
       border: 1px solid rgba(255,255,255,.24);
       background: rgba(255,255,255,.18);
       color:#fff;
-      font-weight: 900;
+      font-weight: 1000;
       cursor:pointer;
       transition: transform .14s ease, background .14s ease;
       white-space: nowrap;
@@ -147,7 +147,7 @@
     .brand h1{
       margin:0;
       font-size: 14px;
-      font-weight: 1000;
+      font-weight: 1100;
       letter-spacing: .6px;
       text-transform: uppercase;
       color: var(--green-900);
@@ -156,7 +156,7 @@
       margin:2px 0 0;
       font-size: 12px;
       color: var(--muted);
-      font-weight: 700;
+      font-weight: 800;
     }
 
     nav ul{
@@ -168,7 +168,7 @@
       padding: 10px 10px;
       border-radius: 12px;
       color: var(--green-900);
-      font-weight: 900;
+      font-weight: 950;
       font-size: 13px;
       transition: background .14s ease;
     }
@@ -185,7 +185,7 @@
       border: 1px solid rgba(14,74,39,.18);
       background: rgba(31,178,85,.08);
       color: var(--green-900);
-      font-weight: 1000;
+      font-weight: 1100;
       font-size: 13px;
       white-space: nowrap;
     }
@@ -196,7 +196,7 @@
       border: 1px solid rgba(14,74,39,.20);
       background: rgba(255,255,255,.9);
       color: var(--green-900);
-      font-weight: 1000;
+      font-weight: 1100;
       box-shadow: var(--shadow2);
       transition: transform .14s ease;
       white-space: nowrap;
@@ -213,13 +213,13 @@
       display:block;
       padding: 12px 10px;
       border-radius: 12px;
-      font-weight: 900;
+      font-weight: 950;
       color: var(--green-900);
     }
     .drawer a:hover{ background: rgba(31,178,85,.10); }
 
     /* ====== Main layout ====== */
-    main{ padding: 22px 0 40px; }
+    main{ padding: 22px 0 70px; } /* extra for mobile sticky bar */
     .grid{
       display:grid;
       grid-template-columns: 1.35fr .65fr;
@@ -250,7 +250,7 @@
     .lead{
       margin: 0 0 12px;
       color: var(--muted);
-      font-weight: 650;
+      font-weight: 700;
     }
 
     .notice{
@@ -260,8 +260,36 @@
       border: 1px solid rgba(31,178,85,.25);
       background: var(--surface);
       color: var(--green-900);
-      font-weight: 800;
+      font-weight: 900;
       font-size: 13px;
+    }
+
+    /* ====== Hero image block (your photo) ====== */
+    .hero-visual{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin: 12px 0 16px;
+    }
+    .hero-visual .frame{
+      border-radius: 18px;
+      overflow:hidden;
+      border: 1px solid rgba(14,74,39,.18);
+      box-shadow: var(--shadow2);
+      background: #fff;
+    }
+    .hero-visual img{
+      width:100%;
+      height: 220px;
+      object-fit: cover;
+      display:block;
+    }
+    .hero-visual .caption{
+      font-size: 12px;
+      color: rgba(11,26,16,.62);
+      font-weight: 750;
+      margin: 0;
+      padding: 0 2px;
     }
 
     /* Form */
@@ -275,7 +303,7 @@
     label{
       font-size: 12px;
       color: var(--muted);
-      font-weight: 900;
+      font-weight: 950;
       letter-spacing: .2px;
     }
     input, textarea{
@@ -308,7 +336,7 @@
       border: 1px solid rgba(14,74,39,.22);
       background: linear-gradient(180deg, var(--green-600), var(--green-700));
       color:#fff;
-      font-weight: 1000;
+      font-weight: 1100;
       cursor:pointer;
       transition: transform .14s ease, filter .14s ease;
     }
@@ -320,7 +348,7 @@
       border: 1px solid rgba(14,74,39,.22);
       background: #fff;
       color: var(--green-900);
-      font-weight: 1000;
+      font-weight: 1100;
       cursor:pointer;
       transition: transform .14s ease, background .14s ease;
     }
@@ -330,7 +358,7 @@
       margin: 10px 0 0;
       color: rgba(11,26,16,.58);
       font-size: 12px;
-      font-weight: 650;
+      font-weight: 700;
     }
 
     /* Right column cards */
@@ -350,7 +378,7 @@
     .hero-card p{
       margin:0 0 12px;
       color: var(--muted);
-      font-weight: 650;
+      font-weight: 700;
       font-size: 13px;
     }
     .big-call{
@@ -360,9 +388,9 @@
       border: 1px solid rgba(31,178,85,.28);
       background: var(--surface);
     }
-    .big-call .t{ font-size: 12px; color: var(--muted); font-weight: 900; text-transform: uppercase; letter-spacing:.4px; }
-    .big-call .n{ font-size: 20px; font-weight: 1100; color: var(--green-900); letter-spacing: -.4px; }
-    .big-call .s{ font-size: 12px; color: rgba(11,26,16,.62); font-weight: 700; }
+    .big-call .t{ font-size: 12px; color: var(--muted); font-weight: 950; text-transform: uppercase; letter-spacing:.4px; }
+    .big-call .n{ font-size: 20px; font-weight: 1200; color: var(--green-900); letter-spacing: -.4px; }
+    .big-call .s{ font-size: 12px; color: rgba(11,26,16,.62); font-weight: 800; }
 
     .mini-grid{
       display:grid;
@@ -377,7 +405,7 @@
       background: rgba(255,255,255,.92);
     }
     .mini strong{ display:block; font-size: 13px; color: var(--green-900); }
-    .mini span{ display:block; margin-top: 4px; font-size: 12px; color: var(--muted); font-weight: 650; }
+    .mini span{ display:block; margin-top: 4px; font-size: 12px; color: var(--muted); font-weight: 700; }
 
     /* Brands block */
     .brands{
@@ -393,7 +421,7 @@
       background: rgba(31,178,85,.06);
       text-align:center;
       color: var(--green-900);
-      font-weight: 950;
+      font-weight: 1000;
       font-size: 12px;
     }
 
@@ -414,7 +442,7 @@
     .list li{
       display:flex; gap: 10px; align-items:flex-start;
       color: var(--muted);
-      font-weight: 650;
+      font-weight: 700;
       font-size: 13px;
     }
     .tick{
@@ -454,25 +482,124 @@
       background: rgba(31,178,85,.06);
       border-radius: 14px;
       color: var(--muted);
-      font-weight: 650;
+      font-weight: 700;
       font-size: 13px;
     }
     .quote strong{ color: var(--green-900); }
 
-    /* Footer */
+    /* ====== Footer + Payment Icons ====== */
     footer{
       margin-top: 18px;
       border-top: 1px solid var(--line);
       background: var(--surface2);
       color: var(--muted);
     }
+
+    .footer-inner{
+      padding: 16px 0 14px;
+      display:grid;
+      gap: 12px;
+    }
+
+    .payments{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items:center;
+      justify-content: space-between;
+    }
+    .payments .left{
+      font-weight: 900;
+      color: var(--green-900);
+      letter-spacing: .2px;
+    }
+    .pay-row{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content:flex-end;
+    }
+    .pay-chip{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(14,74,39,.18);
+      background: rgba(255,255,255,.9);
+      box-shadow: 0 8px 22px rgba(9,33,18,.06);
+      white-space: nowrap;
+    }
+    .pay-chip svg{ width: 34px; height: 22px; display:block; }
+    .pay-chip span{
+      font-weight: 1000;
+      color: rgba(11,59,30,.88);
+      font-size: 12px;
+      letter-spacing:.2px;
+      text-transform: uppercase;
+    }
+
     .foot{
       display:flex; justify-content:space-between; gap: 12px; flex-wrap:wrap;
-      padding: 14px 0;
-      font-weight: 750;
+      padding: 0 0 14px;
+      font-weight: 800;
       font-size: 13px;
     }
     .foot a{ text-decoration: underline; color: var(--green-900); }
+
+    /* ====== Mobile sticky call bar ====== */
+    .mobile-callbar{
+      display:none;
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 60;
+      padding: 10px var(--pad);
+      background: rgba(255,255,255,.92);
+      border-top: 1px solid rgba(14,74,39,.18);
+      backdrop-filter: blur(10px);
+    }
+    .mobile-callbar .bar{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      justify-content: space-between;
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .mobile-callbar .bar .text{
+      display:flex; flex-direction:column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .mobile-callbar .bar .text strong{
+      font-size: 13px;
+      color: var(--green-900);
+      font-weight: 1100;
+      line-height: 1.1;
+      white-space: nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
+    }
+    .mobile-callbar .bar .text span{
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 750;
+      white-space: nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
+    }
+    .mobile-callbar .bar a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(14,74,39,.22);
+      background: linear-gradient(180deg, var(--green-600), var(--green-700));
+      color:#fff;
+      font-weight: 1100;
+      white-space: nowrap;
+    }
 
     /* Responsive */
     @media (max-width: 980px){
@@ -483,6 +610,11 @@
       .drawer{ display:none; }
       .form{ grid-template-columns: 1fr; }
       .callback input{ width: 150px; }
+      .hero-visual img{ height: 200px; }
+      .mobile-callbar{ display:block; }
+      .payments{ gap: 8px; }
+      .payments .left{ font-size: 13px; }
+      .pay-chip{ padding: 9px 10px; }
     }
     @media (min-width: 981px){
       .call-pill{ display:inline-flex; }
@@ -583,7 +715,17 @@
           <div class="hd">
             <h2>Contact Our Local Plumbers</h2>
           </div>
+
           <div class="bd">
+            <!-- Your image -->
+            <div class="hero-visual" aria-label="Plumbing work photo">
+              <div class="frame">
+                <!-- Save your uploaded image as: assets/plumbing.jpg -->
+                <img src="assets/plumbing.jpg" alt="Professional plumbing pipework installation" loading="lazy">
+              </div>
+              <p class="caption">Professional repairs and installations with a clean, safe finish.</p>
+            </div>
+
             <p class="lead">
               React & Assist have qualified local plumbers on call <strong>24 hours a day</strong>, <strong>7 days a week</strong>, <strong>365 days a year</strong>.
               For heating, pipes, drains, toilets and sinks, we provide plumbing repair and installations with a professional finish.
@@ -711,9 +853,6 @@
               <p class="fineprint">
                 Tip: paste your full “areas covered” text here (it will remain readable and tidy).
               </p>
-              <p class="fineprint">
-                You can also replace this with postcode chips (E1, E2, E8, etc.) if you prefer.
-              </p>
             </div>
           </div>
         </div>
@@ -749,10 +888,6 @@
               <li><span class="tick" aria-hidden="true"></span>Insurance approved options</li>
               <li><span class="tick" aria-hidden="true"></span>24 hour free phone nationwide: <a href="tel:08009870895" style="text-decoration:underline; color: var(--green-900);">0800 987 0895</a></li>
             </ul>
-
-            <div class="notice" style="margin-top:12px;">
-              Want the “Gas Safe Registered” style panel? I can rebuild it in this theme without using the old low-res artwork.
-            </div>
           </div>
         </div>
       </section>
@@ -761,16 +896,87 @@
 
   <footer>
     <div class="wrap">
-      <div class="foot">
-        <div>© <span id="year"></span> React & Assist Plumbing</div>
-        <div>
-          <a href="#top">Where Possible</a> ·
-          <a href="#enquiry">Contact Us</a> ·
-          <a href="tel:08009870895">0800 987 0895</a>
+      <div class="footer-inner">
+        <!-- Payment icons row -->
+        <div class="payments" aria-label="Payment methods">
+          <div class="left">We accept major payment methods</div>
+
+          <div class="pay-row">
+            <!-- These are clean vector-style badges (not pixelated images) -->
+            <div class="pay-chip" aria-label="Visa">
+              <svg viewBox="0 0 64 40" role="img" aria-hidden="true">
+                <rect x="1" y="1" width="62" height="38" rx="10" fill="#ffffff"/>
+                <rect x="1" y="1" width="62" height="38" rx="10" fill="none" stroke="rgba(14,74,39,.18)"/>
+                <text x="32" y="26" text-anchor="middle" font-size="16" font-weight="900" fill="#0b3b1e" font-family="ui-sans-serif, system-ui">VISA</text>
+              </svg>
+              <span>Visa</span>
+            </div>
+
+            <div class="pay-chip" aria-label="Mastercard">
+              <svg viewBox="0 0 64 40" role="img" aria-hidden="true">
+                <rect x="1" y="1" width="62" height="38" rx="10" fill="#ffffff"/>
+                <rect x="1" y="1" width="62" height="38" rx="10" fill="none" stroke="rgba(14,74,39,.18)"/>
+                <circle cx="28" cy="20" r="9" fill="rgba(255,99,71,.85)"/>
+                <circle cx="36" cy="20" r="9" fill="rgba(255,193,7,.85)"/>
+                <text x="32" y="33" text-anchor="middle" font-size="9" font-weight="900" fill="#0b3b1e" font-family="ui-sans-serif, system-ui">mastercard</text>
+              </svg>
+              <span>Mastercard</span>
+            </div>
+
+            <div class="pay-chip" aria-label="Maestro">
+              <svg viewBox="0 0 64 40" role="img" aria-hidden="true">
+                <rect x="1" y="1" width="62" height="38" rx="10" fill="#ffffff"/>
+                <rect x="1" y="1" width="62" height="38" rx="10" fill="none" stroke="rgba(14,74,39,.18)"/>
+                <circle cx="30" cy="20" r="9" fill="rgba(0,123,255,.75)"/>
+                <circle cx="38" cy="20" r="9" fill="rgba(220,53,69,.75)"/>
+                <text x="32" y="33" text-anchor="middle" font-size="10" font-weight="1000" fill="#0b3b1e" font-family="ui-sans-serif, system-ui">maestro</text>
+              </svg>
+              <span>Maestro</span>
+            </div>
+
+            <div class="pay-chip" aria-label="American Express">
+              <svg viewBox="0 0 64 40" role="img" aria-hidden="true">
+                <rect x="1" y="1" width="62" height="38" rx="10" fill="#ffffff"/>
+                <rect x="1" y="1" width="62" height="38" rx="10" fill="none" stroke="rgba(14,74,39,.18)"/>
+                <rect x="12" y="11" width="40" height="18" rx="6" fill="rgba(13,110,253,.18)"/>
+                <text x="32" y="24" text-anchor="middle" font-size="10" font-weight="1100" fill="#0b3b1e" font-family="ui-sans-serif, system-ui">AMEX</text>
+              </svg>
+              <span>Amex</span>
+            </div>
+
+            <div class="pay-chip" aria-label="PayPal">
+              <svg viewBox="0 0 64 40" role="img" aria-hidden="true">
+                <rect x="1" y="1" width="62" height="38" rx="10" fill="#ffffff"/>
+                <rect x="1" y="1" width="62" height="38" rx="10" fill="none" stroke="rgba(14,74,39,.18)"/>
+                <text x="32" y="26" text-anchor="middle" font-size="14" font-weight="1100" fill="#0b3b1e" font-family="ui-sans-serif, system-ui">PayPal</text>
+              </svg>
+              <span>PayPal</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="foot">
+          <div>© <span id="year"></span> React & Assist Plumbing</div>
+          <div>
+            <a href="#top">Where Possible</a> ·
+            <a href="#enquiry">Contact Us</a> ·
+            <a href="tel:08009870895">0800 987 0895</a>
+          </div>
         </div>
       </div>
     </div>
   </footer>
+
+  <!-- Mobile sticky call bar -->
+  <div class="mobile-callbar" aria-label="Call now bar">
+    <div class="bar">
+      <div class="text">
+        <strong>React & Assist Plumbing</strong>
+        <span>24 Hour Free Phone Nationwide • 0800 987 0895</span>
+      </div>
+      <a href="tel:08009870895">Call now</a>
+    </div>
+  </div>
 
   <script>
     // Mobile menu toggle
